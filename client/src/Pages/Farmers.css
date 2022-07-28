@@ -1,0 +1,13 @@
+.imagescroll::-webkit-scrollbar{
+    display: none;
+}
+.background{
+    background-image: url('https://i.pinimg.com/736x/d1/42/d8/d142d8b7a2e493ab8e6523ec42a5c420.jpg');
+    background-repeat: no-repeat;
+   background-size: cover;
+   
+    
+}
+.MainCartItem{
+    box-shadow: rgb(134, 149, 162) 3px 3px 6px 0px inset, rgba(150, 106, 106, 0.5) -3px -3px 6px 1px inset;
+}
