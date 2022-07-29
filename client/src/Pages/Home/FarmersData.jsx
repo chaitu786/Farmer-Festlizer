@@ -2,16 +2,19 @@ import { Box, Button, Center, Image, Stack, Text } from '@chakra-ui/react'
 import React from 'react'
 import { useDispatch, useSelector} from 'react-redux'
 import { useEffect } from 'react'
-import { Get_data } from '../../Redux/AppReducer/Action'
-import "./Farmers.css"
+import { Get_All_Data } from '../../Redux/AppReducer/Action'
+import "../Farmers.css"
 
 export const FarmersUpload = () => {
-    const ProductData=useSelector((state)=>state.Reducer.Products?.data);
-    const dispatch=useDispatch();
-    useEffect(()=>{
-        dispatch(Get_data())
-    },[dispatch])
-console.log(ProductData)
+const ProductData=useSelector((state)=>state.Reducer.Products?.data);
+  const dispatch=useDispatch()
+  useEffect(()=>{
+    dispatch(Get_All_Data())
+    setTimeout(()=>{
+        dispatch(Get_All_Data())
+    },0)
+  },[dispatch])
+  console.log()
   return (
    <Center>
     <Box>
