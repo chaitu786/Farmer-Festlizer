@@ -2,7 +2,7 @@ import { Box, Button, Center, Image, Stack, Text } from '@chakra-ui/react'
 import React from 'react'
 import { useDispatch, useSelector} from 'react-redux'
 import { useEffect } from 'react'
-import { Get_data } from '../Redux/AppReducer/Action'
+import { Get_data } from '../../Redux/AppReducer/Action'
 import "./Farmers.css"
 
 export const FarmersUpload = () => {
