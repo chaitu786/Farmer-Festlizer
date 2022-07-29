@@ -6,9 +6,13 @@ import { FarmerPage } from '../Components/Home/FarmerPage'
 import { Cart } from "../Pages/Cart/CartPage"
 import FileUpload from '../Pages/Upload/CreatePage'
 
+import NavBar from '../Components/Home/Header'
+
 const MainRoutes = () => {
   return (
     <div>
+      {/* <NavBar/> */}
+<NavBar/>
         <Routes>
             <Route path="/" element={<FarmerPage/>} ></Route>
             <Route path="/signup" element={<SignUp/>} ></Route>
