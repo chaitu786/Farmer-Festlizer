@@ -49,7 +49,7 @@ export const FarmerPage = () => {
 </Stack> 
 <SocialProfileSimple name={User[0]} name1={User[1]} number={User[2]} role={User[3]} isLogin={isLogin} isFormer={farmer}/>
 </Box>
-<Box mt={{base:'48',md:'10',lg:"10",xl:'10'}} ml={{base:'-350px',md:"10",lg:'10',xl:'10'}} style={{height:'100vh',overflowY:"scroll"}} className="imagescroll">
+<Box mt={{base:'32',md:'10',lg:"10",xl:'10'}} ml={{base:'-350px',md:"10",lg:'10',xl:'10'}} style={{height:'100vh',overflowY:"scroll"}} className="imagescroll">
 <FarmersData isFarmer={farmer}/>
 </Box>
 <Show above='sm'>
@@ -173,12 +173,7 @@ export const FarmerPage = () => {
       </Box>
     </Center>
     </Show>
-    <Show breakpoint='(max-width: 470px)'>
-      <Stack direction={'row'} justifyContent={"space-around"} mt={'5'}>
-        <Text fontSize={'2xl'}>Logo</Text>
-        <Image src='https://images.unsplash.com/photo-1520810627419-35e362c5dc07?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ' borderRadius={'50%'} width={'16'}></Image>
-      </Stack>
-</Show>
+    
     </>
   );
 }

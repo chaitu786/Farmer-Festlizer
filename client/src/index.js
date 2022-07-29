@@ -11,11 +11,24 @@ import AlertTemplate from 'react-alert-template-basic'
 import { store } from './Redux/Store';
 
 const breakpoints = {
-  sm: '400px',
+  sm: '450px',
   md: '768px',
   lg: '960px',
   xl: '1200px',
   '2xl': '1536px',
+};
+const colors = {
+  primary: {
+    100: "#E5FCF1",
+    200: "#27EF96",
+    300: "#10DE82",
+    400: "#0EBE6F",
+    500: "#0CA25F",
+    600: "#0A864F",
+    700: "#086F42",
+    800: "#075C37",
+    900: "#064C2E"
+  }
 };
 
 const options = {
@@ -23,7 +36,7 @@ const options = {
   position: positions.BOTTOM_CENTER
 };
 
-const theme = extendTheme({ breakpoints })
+const theme = extendTheme({ breakpoints,colors })
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
