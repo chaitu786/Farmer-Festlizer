@@ -2,12 +2,15 @@ import logo from './logo.svg';
 import './App.css';
 import {  FarmerPage} from "../src/Pages/FarmerPage"
 import { Cart } from './Pages/Cart';
-import FileUpload from './Pages/FileUploader/FileUpload';
+import { SignUp } from './Pages/SignUp';
+import { Login } from './Pages/Login';
 
 function App() {
   return (
-     <FileUpload/> 
-   
+    //  <FarmerPage/> 
+    <FileUpload/> 
+   <SignUp/>
+  // <Login/>     
   //  <Cart/>
   );
 }

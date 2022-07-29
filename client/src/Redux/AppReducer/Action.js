@@ -11,6 +11,18 @@ export const Get_data=()=>(dispatch)=>{
  })
 };
 
+
+};
+
+export const Sigup_Success=(alert,payload,navigate)=>(dispatch)=>{
+   console.log(payload)
+   axios.post("http://localhost:8080/signup",payload).then((r)=>{
+        console.log(r)
+   }).catch((e)=>{
+      console.log(e)
+   })
+
+};
 export const Get_User=()=>(dispatch)=>{
    axios.get("http://localhost:8080/users").then((r)=>{
       console.log(r);
@@ -20,3 +32,4 @@ export const Get_User=()=>(dispatch)=>{
       console.log(err);
    })
   };
+
