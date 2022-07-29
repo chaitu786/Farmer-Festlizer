@@ -103,10 +103,18 @@ const NavBarContainer = ({ children, ...props }) => {
       justify="space-between"
       wrap="wrap"
       w="100%"
-      mb={8}
       p={8}
-      bg={["primary.500", "primary.500", "transparent", "transparent"]}
+      
       color={["white", "white", "primary.700", "primary.700"]}
+      boxShadow= {'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px'}
+      position={{base:'fixed',md:'fixed'}}
+      top={{base:'0',md:0}}
+      zIndex={100}
+      bg={["primary.500", "primary.500",'white','white']}
+      
+      
+      
+
       {...props}
     >
       {children}

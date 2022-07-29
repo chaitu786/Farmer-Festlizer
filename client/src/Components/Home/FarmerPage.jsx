@@ -49,7 +49,7 @@ export const FarmerPage = () => {
 
   return (
     <>
-    <Box display={'flex'} >
+    <Box display={'flex'} mt={{md:'24'}}>
       <Box >
 <Stack direction={'row'} mt={'10'} ml={{base:"5"}}>
     <FcBiohazard fontSize={'40px'}/>

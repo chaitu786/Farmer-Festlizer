@@ -18,7 +18,7 @@ const ProductData=useSelector((state)=>state.Reducer.Products?.data);
     dispatch(AddToCart(Id,alert))
   }
   return (
-   <Center>
+   <Center >
     <Box>
        {
         ProductData?.map((el)=>(
