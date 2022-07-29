@@ -1,15 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
-import {  FarmerPage} from "../src/Pages/FarmerPage"
-import { Cart } from './Pages/Cart';
-import { SignUp } from './Pages/SignUp';
-import { Login } from './Pages/Auth/Login';
+import { FarmerPage } from './Pages/Home/FarmerPage';
+import MainRoutes from './Routes/MainRoutes';
+
 
 function App() {
   return (
-    //  <FarmerPage/> 
+     <MainRoutes/> 
     // <FileUpload/> 
-   <SignUp/>
   // <Login/>     
   //  <Cart/>
   );

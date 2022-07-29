@@ -1,9 +1,9 @@
 const DataModel=require("../models/Product.model");
 const { UserModel, SellerModel } = require("../models/User.model");
 
-const getAllData=async()=>{
+const getAllData=()=>{
     try {
-        const data = await DataModel.find();
+        const data =  DataModel.find();
         return {
           message: "data obtained successfully",
           status: "success",

@@ -10,21 +10,11 @@ const initstate={
 
 export const AppReducer=(state=initstate,action)=>{
     switch(action.type){
-        case types.PRODUCT_REQUEST:
-            return{
-                Loading:true,
-                Error:false
-            }
         case types.PRODUCT_SUCCESS:
             return{
                 Loading:false,
                 Products:action.payload,
                 Error:false
-            }
-        case types.PRODUCT_FALIURE:
-            return{
-                Loading:false,
-                Error:true
             }
         case types.USER_DATA:
             return{

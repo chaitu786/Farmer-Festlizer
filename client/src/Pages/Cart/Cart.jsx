@@ -6,16 +6,17 @@ import { useDispatch,useSelector,} from 'react-redux'
 import {AiOutlineDelete} from "react-icons/ai"
 import {BsBookmarkCheck} from "react-icons/bs"
 
-import { Get_data } from '../Redux/AppReducer/Action'
+// import { Get_data } from '../Redux/AppReducer/Action'
 import { Summary } from './Summary'
 
 export const Cart = () => {
-    const Product_data=useSelector((state)=>state.Reducer.Products)
-    const dispatch=useDispatch();
-    useEffect(()=>{
-        dispatch(Get_data())
-    },[])
-    console.log(Product_data)
+    // const Product_data=useSelector((state)=>state.Reducer.Products)
+    const Product_data=[]
+    // const dispatch=useDispatch();
+    // useEffect(()=>{
+    //     dispatch(Get_data())
+    // },[])
+    // console.log(Product_data)
   return (
     <>
    <Box>

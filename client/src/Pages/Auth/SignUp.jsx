@@ -21,7 +21,7 @@ import { useAlert } from 'react-alert'
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { useDispatch } from 'react-redux';
-import { Sigup_Success } from '../Redux/AppReducer/Action';
+import { Sigup_Success } from '../../Redux/AppReducer/Action'
 import {useNavigate} from "react-router-dom"
 
 
@@ -201,7 +201,7 @@ export default function SignupCard({handleChange,handleSubmit}) {
           <FormControl id="Role" isRequired>
             <FormLabel>Role</FormLabel>
            <Select placeholder='Select' name='role' onChange={handleChange}>
-             <option value='Sellar'>Seller</option>
+             <option value='Seller'>Seller</option>
               </Select>
           </FormControl>
           <Stack spacing={6}>
