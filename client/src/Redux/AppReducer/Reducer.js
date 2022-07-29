@@ -25,6 +25,7 @@ export const AppReducer=(state=initstate,action)=>{
                 Loading:false,
                 Error:true
             }
+        
         default:
             return state
     }

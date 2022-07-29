@@ -7,6 +7,18 @@ import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from '@chakra-ui/react'
 import { extendTheme } from '@chakra-ui/react'
 import { store } from './Redux/Store';
+import { transitions, positions, Provider as AlertProvider } from 'react-alert'
+import AlertTemplate from 'react-alert-template-basic'
+import { BrowserRouter } from 'react-router-dom';
+
+const options = {
+  // you can also just use 'bottom center'
+  position: positions.BOTTOM_CENTER,
+  timeout: 5000,
+  offset: '30px',
+  // you can also just use 'scale'
+  transition: transitions.SCALE
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -23,12 +35,16 @@ const breakpoints = {
 const theme = extendTheme({ breakpoints })
 
 root.render(
-
+<BrowserRouter>
 <Provider store={store}> 
 <ChakraProvider Provider={theme}>
+  <AlertProvider template={AlertTemplate} {...options}>
+
     <App />
+  </AlertProvider>
  </ChakraProvider>
  </Provider>
+ </BrowserRouter>
  
 
 );
