@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+   
+    <title>Farmer Chat app</title>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
+
+    <link href="./style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <h1>Welcome to Farmers World</h1>
+    <img src="./img/farming.jpg" alt="">
+    <div id="Farmer-chat">
+        <h2>Farmers Chat</h2>
+        <div id="Farmer-window">
+            <div id="output"></div>
+            <div id="feedback"></div>
+        </div>
+        <input id="handle" type="text" placeholder="Name" />
+        <input id="message" type="text" placeholder="Message" />
+        <button id="send">Send</button>
+    </div>
+
+</body>
+<script src="./chat.js"></script>
+<!-- <script src="https://cdn.socket.io/socket.io-1.3.7.js"></script> -->
+
+</html>

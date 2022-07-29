@@ -7,6 +7,7 @@ const cartRouter = Router();
 
 cartRouter.get("/cart", async(req,res)=>{
     const Mail=req.cookies.auth
+    console.log(Mail);
     const { seller } = await authenticate(Mail);
     if (seller === undefined || seller.length === 0) {
         return res
