@@ -2,7 +2,7 @@ import * as types from "./Actiontypes"
 
 const initstate={
     Products:[],
-    User:{},
+    Cart:[],
 }
 
 
@@ -12,9 +12,9 @@ export const AppReducer=(state=initstate,action)=>{
             return{
                 Products:action.payload,
             }
-        case types.USER_DATA:
+        case types.CART_DATA:
             return{
-                User:action.payload
+                Cart:action.payload
             }
         default:
             return state

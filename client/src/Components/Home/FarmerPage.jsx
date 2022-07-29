@@ -20,14 +20,24 @@ import {
 import "./Farmers.css"
 import { FarmersData } from './FarmerData';
 import { FarmersSchemes } from './FarmerSchemes';
-
+import { Logout } from '../../Redux/AppReducer/Action';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export const FarmerPage = () => {
     const [isLogin,setIsLogin]=useState(false)
     const [farmer,setisFarmer]=useState(false)
     const User=localStorage.getItem("user").split(",")
     const login=localStorage.getItem("isLogin")
-    
+    const dispatch=useDispatch()
+    const navigate=useNavigate()
+    const handleLogout=()=>{
+      console.log(1);
+      dispatch(Logout())
+    }
+    const handleLogin=()=>{
+      navigate("/login")
+    }
     useEffect(()=>{
         if(login==="true"){
             setIsLogin(true)
@@ -36,8 +46,7 @@ export const FarmerPage = () => {
             setisFarmer(true)
         }
     },[])
-  console.log(isLogin)
-  console.log(User,"local");
+
   return (
     <>
     <Box display={'flex'} >
@@ -47,7 +56,7 @@ export const FarmerPage = () => {
       <Input placeholder='Explore' width={{base:"64",md:'64',lg:'64',xl:'64'}} / > 
         <FcSearch fontSize={'40px'}/>  
 </Stack> 
-<SocialProfileSimple name={User[0]} name1={User[1]} number={User[2]} role={User[3]} isLogin={isLogin} isFormer={farmer}/>
+<SocialProfileSimple name={User[0]} name1={User[1]} number={User[2]} role={User[3]} isLogin={isLogin} isFormer={farmer} handleLogout={handleLogout} handleLogin={handleLogin}/>
 </Box>
 <Box mt={{base:'48',md:'10',lg:"10",xl:'10'}} ml={{base:'-350px',md:"10",lg:'10',xl:'10'}} style={{height:'100vh',overflowY:"scroll"}} className="imagescroll">
 <FarmersData isFarmer={farmer}/>
@@ -62,7 +71,7 @@ export const FarmerPage = () => {
   )
 }
 
- function SocialProfileSimple({name,name1,number, role, isLogin}) {
+ function SocialProfileSimple({name,name1,number, role, isLogin, handleLogout, handleLogin }) {
     console.log(name,"find");
   return (
     <>
@@ -148,7 +157,7 @@ export const FarmerPage = () => {
             _focus={{
               bg: 'gray.200',
             }}>
-            Message
+            Info
           </Button>
           <Button
             flex={1}
@@ -166,7 +175,7 @@ export const FarmerPage = () => {
               bg: 'blue.500',
             }}>
             {
-                isLogin?("Logout"):("Login")
+                isLogin?(<Text onClick={handleLogout}>Logout</Text>):(<Text onClick={handleLogin}>Login</Text>)
             }
           </Button>
         </Stack>
