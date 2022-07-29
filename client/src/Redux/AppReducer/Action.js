@@ -20,6 +20,17 @@ export const Get_Cart_Data=()=>(dispatch)=>{
    })
 };
 
+
+export const Get_MyPosts_Data=()=>(dispatch)=>{
+   axios.get("http://localhost:8080/myposts",{withCredentials:true}).then((r)=>{
+      console.log(r.data.data,);
+      dispatch({type:types.MY_POSTS_DATA,payload:r.data.data})
+   })
+   .catch((err)=>{
+      console.log(err);
+   })
+};
+
 export const Sigup_Success=(alert,payload,navigate)=>(dispatch)=>{
    axios.post("http://localhost:8080/signup",payload).then((r)=>{
       if(r.data.message==="user created"){
@@ -113,7 +124,7 @@ export const Logout=()=>(dispatch)=>{
          localStorage.setItem("isLogin",false)
          localStorage.setItem("user","")
          window.location.reload()
-     }
+      }
    })
    .then(()=>{
 
@@ -121,4 +132,33 @@ export const Logout=()=>(dispatch)=>{
    .catch((err)=>{
        console.log(err)
    })
+}
+
+export const Delete=(Id,alert)=>()=>{
+   axios.get(`http://localhost:8080/${Id}/delete`,{withCredentials:true}).then((r)=>{
+       if("item marked as completed"===r.data.message){
+           alert.success("item marked as completed")
+       }
+   })
+   .catch((err)=>{
+       alert.error("Something Went Wrong in axios")
+       console.log(err);
+  })
+}
+
+
+export const PermenentDelete=(Id,alert)=>(dispatch)=>{
+   axios.get(`http://localhost:8080/${Id}/permenentDelete`,{withCredentials:true}).then((r)=>{
+      console.log(r.data);
+       if("item deleted successfully"===r.data.message){
+           alert.success("item deleted successfully")
+       }
+   })
+   .then(()=>{
+      dispatch(Get_MyPosts_Data())
+   })
+   .catch((err)=>{
+       alert.error("Something Went Wrong in axios")
+       console.log(err);
+  })
 }

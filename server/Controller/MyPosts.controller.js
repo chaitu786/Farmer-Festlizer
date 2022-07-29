@@ -36,4 +36,17 @@ const Completed=async(id)=>{
     }
 }
 
-module.exports={ PostItems, Completed }
+
+const Delete=async(id)=>{
+    try {
+        await DataModel.findByIdAndDelete(id)
+        return {
+            message: "item deleted successfully",
+            status: "success",
+        };
+    } catch (error) {
+        return { message: "something went wrong", status: "error" };
+    }
+}
+
+module.exports={ PostItems, Completed, Delete }
