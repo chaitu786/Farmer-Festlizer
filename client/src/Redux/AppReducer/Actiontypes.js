@@ -1,3 +1,5 @@
 export const PRODUCT_SUCCESS="PRODUCT_SUCCESS"
 
 export const CART_DATA="CART_DATA"
+
+export const MY_POSTS_DATA="MY_POSTS_DATA"
