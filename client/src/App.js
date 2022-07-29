@@ -3,12 +3,12 @@ import './App.css';
 import {  FarmerPage} from "../src/Pages/FarmerPage"
 import { Cart } from './Pages/Cart';
 import { SignUp } from './Pages/SignUp';
-import { Login } from './Pages/Login';
+import { Login } from './Pages/Auth/Login';
 
 function App() {
   return (
     //  <FarmerPage/> 
-    <FileUpload/> 
+    // <FileUpload/> 
    <SignUp/>
   // <Login/>     
   //  <Cart/>
