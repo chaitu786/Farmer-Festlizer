@@ -5,7 +5,7 @@ const authenticate = async (Mail) => {
     const seller = await SellerModel.find({ Mail });
   try {
     if(user[0]){
-        if (user[0].role==="Former") {
+        if (user[0].role==="Farmer") {
             return { user };
         }
     }

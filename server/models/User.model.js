@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const FormerSchema = new Schema(
+const FarmerSchema = new Schema(
     {
         First_Name:String,
         Last_Name:String,
@@ -14,13 +14,13 @@ const FormerSchema = new Schema(
         ],
         role:{
             type:String,
-            enum:["Former","Seller"]
+            enum:["Farmer","Seller"]
         }
     },
-    { collection: "former" }
+    { collection: "farmer" }
 )
 
-const UserModel = model("UserModel", FormerSchema, "user");
+const UserModel = model("UserModel", FarmerSchema, "user");
 
 const SellerSchema = new Schema(
     {
@@ -36,7 +36,7 @@ const SellerSchema = new Schema(
         ],
         role:{
             type:String,
-            enum:["Former","Seller"]
+            enum:["Farmer","Seller"]
         }
     },
     { collection: "Seller" }

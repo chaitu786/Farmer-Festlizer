@@ -26,8 +26,8 @@ productRouter.post("/uploadIssue", async(req,res)=>{
           .status(401)
           .send({ message: "unauthorised user", status: "failed" });
     }
-    const { Title,Image_Url,Category, Status, isCompleted } = req.body
-    const { message, status, value } = await UploadIssue( Title, Image_Url, Category, Mail, Status, isCompleted );
+    const { Title,Image_Url,Category, Desc, Number, Status, isCompleted } = req.body
+    const { message, status, value } = await UploadIssue( Title, Image_Url, Category,Desc, Number, Mail, Status, isCompleted );
     if (status === "error") {
         return res.status(404).send({ message, status });
     }

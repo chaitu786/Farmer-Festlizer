@@ -1,5 +1,5 @@
-import { Image, Input, } from '@chakra-ui/react'
-import React from 'react'
+import { Image, Input, useFocusEffect, } from '@chakra-ui/react'
+import React, { useEffect } from 'react'
 import {FcBiohazard} from "react-icons/fc"
 import {FcSearch} from "react-icons/fc"
 import { FarmersUpload } from './FarmersUpload'
@@ -19,9 +19,17 @@ import {
   Show
 } from '@chakra-ui/react';
 import "./Farmers.css"
+import { useDispatch, useSelector } from 'react-redux'
+import { Get_User } from '../Redux/AppReducer/Action'
 
 
 export const FarmerPage = () => {
+  const UserData=useSelector((state)=>state.Reducer.User);
+  const dispatch=useDispatch()
+  useEffect(()=>{
+    dispatch(Get_User())
+  },[dispatch])
+  console.log(UserData,"ji");
   return (
     <>
     <Box display={'flex'} >
@@ -145,7 +153,7 @@ export const FarmerPage = () => {
             _focus={{
               bg: 'blue.500',
             }}>
-            Follow
+            LogOut
           </Button>
         </Stack>
       </Box>
