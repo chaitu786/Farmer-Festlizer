@@ -1,5 +1,5 @@
 const { Router }=require("express");
-const { SignUpUser,LoginUser } = require("../Controller/User.controller");
+const { SignUpUser,LoginUser, getAllUsers } = require("../Controller/User.controller");
 const userRouter = Router();
 
 // create user
@@ -36,6 +36,7 @@ userRouter.post("/login", async (req, res) => {
     } else if (status === "failed") {
       return res.status(201).send({ message, status });
     }
+    localStorage.setItem("login","true")
     return res
       .cookie("auth", value, { httpOnly: true, secure: false, maxAge:86400000 })
       .status(200)
@@ -46,6 +47,20 @@ userRouter.get("/logout",async(req,res)=>{
     res.clearCookie("auth").status(200).send(
         {message:"user logout successfully", status:"success"}
     )
+})
+
+userRouter.get("/users",async(req,res)=>{
+    const Mail=req.cookies.auth
+    if(Mail===null || undefined){
+        return res
+        .status(401)
+        .send({ message: "session expired", status: "user logged out" });
+    }
+    const { message, status, data } = await getAllUsers(Mail);
+    if (status === "error") {
+        return res.status(404).send({ message, status, data });
+    }
+    return res.status(200).send({ message, status, data });
 })
 
 module.exports = userRouter

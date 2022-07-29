@@ -3,13 +3,13 @@ const { UserModel, SellerModel } = require('../models/User.model');
 
 const SignUpUser = async ( First_Name,Last_Name,Mobile,Mail,Password,role ) =>{
     try {
-        const former = await UserModel.findOne({ Mobile });
+        const farmer = await UserModel.findOne({ Mobile });
         const seller = await SellerModel.findOne({ Mobile });
-        if (former || seller) {
+        if (farmer || seller) {
           return { message: "user already exists", status: "exists" };
         } else{
-            if(role=="Former"){
-                let newFormerData = {
+            if(role=="Farmer"){
+                let newfarmerData = {
                     First_Name,
                     Last_Name,
                     Mobile,
@@ -18,7 +18,7 @@ const SignUpUser = async ( First_Name,Last_Name,Mobile,Mail,Password,role ) =>{
                     role,
                     Problems: [],
                 };
-                const newUser = new UserModel(newFormerData);
+                const newUser = new UserModel(newfarmerData);
                 newUser.save();
                 return { message: "user created", status: "success" };
             }
@@ -45,12 +45,12 @@ const SignUpUser = async ( First_Name,Last_Name,Mobile,Mail,Password,role ) =>{
 
 const LoginUser= async (Mobile,Password)=>{
     const seller = await SellerModel.find({ Mobile })
-    const former= await UserModel.find({ Mobile })
+    const farmer= await UserModel.find({ Mobile })
     try {
         
-        if(former[0]){
-            let value=former[0].Mail
-            if(former[0].Password===Password && former[0].role==="Former"){
+        if(farmer[0]){
+            let value=farmer[0].Mail
+            if(farmer[0].Password===Password && farmer[0].role==="Farmer"){
                 return { message: "login success", status: "success", value };
             }
             else{
@@ -74,4 +74,23 @@ const LoginUser= async (Mobile,Password)=>{
     }
 }
 
-module.exports = { SignUpUser, LoginUser }
+const getAllUsers=async(Mail)=>{
+    const seller = await SellerModel.find({ Mail })
+    const farmer= await UserModel.find({ Mail })
+    try {
+        if(farmer[0]){
+            if(farmer[0].role==="Farmer"){
+                return { message: "user data recieved", status: "success", data:farmer };
+            }
+        }
+        else{
+            if(seller[0].role==="Seller"){
+                return { message: "user data recieved", status: "success", data:seller };
+            }
+        }
+    } catch (error) {
+        return { message: "something went wrong", status: "error" };
+    }
+}
+
+module.exports = { SignUpUser, LoginUser, getAllUsers }

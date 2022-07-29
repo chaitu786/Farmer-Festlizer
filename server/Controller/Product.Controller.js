@@ -15,11 +15,16 @@ const getAllData=async()=>{
     }
 }
 
-const UploadIssue=( Title, Image_Url, Category, Mail,Status, isCompleted )=>{
+const UploadIssue= async ( Title, Image_Url, Category,Desc,Name, Number, Mail,Status, isCompleted )=>{
+    let Data=await UserModel.find({Mail})
+    console.log(Data[0].Mobile);
     let Issue={
         Title,
         Image_Url,
         Category, 
+        Desc,
+        Name:`${Data[0].First_Name} ${Data[0].Last_Name}`,
+        Number:Data[0].Mobile,
         Status:true, 
         isCompleted:false
     }

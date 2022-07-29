@@ -9,6 +9,8 @@ export const Get_data=()=>(dispatch)=>{
  }).catch((e)=>{
     dispatch({type:types.PRODUCT_FALIURE})
  })
+};
+
 
 };
 
@@ -21,3 +23,13 @@ export const Sigup_Success=(alert,payload,navigate)=>(dispatch)=>{
    })
 
 };
+export const Get_User=()=>(dispatch)=>{
+   axios.get("http://localhost:8080/users").then((r)=>{
+      console.log(r);
+      dispatch({type:types.USER_DATA,payload:r.data})
+   })
+   .catch((err)=>{
+      console.log(err);
+   })
+  };
+

@@ -8,8 +8,9 @@ import { Login } from './Pages/Login';
 function App() {
   return (
     //  <FarmerPage/> 
+    <FileUpload/> 
    <SignUp/>
-  // <Login/>
+  // <Login/>     
   //  <Cart/>
   );
 }

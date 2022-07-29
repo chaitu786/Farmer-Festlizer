@@ -3,6 +3,7 @@ import * as types from "../AppReducer/Actiontypes"
 const initstate={
     Loading:false,
     Products:[],
+    User:[],
     Error:false
 }
 
@@ -25,7 +26,10 @@ export const AppReducer=(state=initstate,action)=>{
                 Loading:false,
                 Error:true
             }
-        
+        case types.USER_DATA:
+            return{
+                User:action.payload
+            }
         default:
             return state
     }
