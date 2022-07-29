@@ -10,15 +10,15 @@ export const Get_All_Data=()=>(dispatch)=>{
    })
 };
 
-// export const Get_User=()=>(dispatch)=>{
-//    axios.get("http://localhost:8080/users").then((r)=>{
-//       console.log(r.data.data,);
-//       dispatch({type:types.USER_DATA,payload:r.data})
-//    })
-//    .catch((err)=>{
-//       console.log(err);
-//    })
-// };
+export const Get_Cart_Data=()=>(dispatch)=>{
+   axios.get("http://localhost:8080/cart",{withCredentials:true}).then((r)=>{
+      console.log(r.data.data,);
+      dispatch({type:types.CART_DATA,payload:r.data.data})
+   })
+   .catch((err)=>{
+      console.log(err);
+   })
+};
 
 export const Sigup_Success=(alert,payload,navigate)=>(dispatch)=>{
    axios.post("http://localhost:8080/signup",payload).then((r)=>{
@@ -79,5 +79,46 @@ export const Login_Success=(alert,payload,navigate)=>()=>{
     .catch((err)=>{
         alert.error("Something Went Wrong in axios")
         console.log(err);
-    })
+   })
+}
+
+export const Upload_Issue=(formData,alert)=>(dispatch)=>{
+   console.log(formData);
+   axios.post("http://localhost:8080/uploadIssue",formData,{withCredentials:true},{headers:{"Content-Type":"multiple/form-data"}}).then((r)=>{
+      console.log(r,"multer");
+      if(r.data.message==="data uploaded"){
+         alert.success("Your Post Uploaded uploaded")
+      }
+      else if(r.data.message==="exists"){
+         alert.send("User Already Exist")
+      }
+      else if (r.data.message==="error"){
+         alert.error("Something Went Wrong")
+      }
+   })
+   .then(()=>{
+      dispatch(Get_All_Data())
+   })
+   .catch((err)=>{
+      console.log(err);
+   })
+}
+
+
+export const Logout=()=>(dispatch)=>{
+   console.log(1,"ji");
+   axios.get(`http://localhost:8080/logout`,{withCredentials:true}).then((res)=>{
+      console.log(res.data.message,"jil");
+      if(res.data.message==="user logout successfully"){
+         localStorage.setItem("isLogin",false)
+         localStorage.setItem("user","")
+         window.location.reload()
+     }
+   })
+   .then(()=>{
+
+   })
+   .catch((err)=>{
+       console.log(err)
+   })
 }
