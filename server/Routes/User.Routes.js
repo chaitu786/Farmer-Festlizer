@@ -30,17 +30,16 @@ userRouter.post("/login", async (req, res) => {
     if (Mobile.toString().length !== 10) {
         return res.status(200).send({ message: "Invalid Mobile Number" });
     }
-    const { message, status, value } = await LoginUser(Mobile.toString(), Password);
+    const { message, status, value, data } = await LoginUser(Mobile.toString(), Password);
     if (status === "error") {
       return res.status(404).send({ message, status });
     } else if (status === "failed") {
       return res.status(201).send({ message, status });
     }
-    localStorage.setItem("login","true")
     return res
       .cookie("auth", value, { httpOnly: true, secure: false, maxAge:86400000 })
       .status(200)
-      .send({ message, status });
+      .send({ message, status, value, data });
 });
 
 userRouter.get("/logout",async(req,res)=>{

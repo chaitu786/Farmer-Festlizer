@@ -2,6 +2,7 @@ const { UserModel, SellerModel } = require('../models/User.model');
 
 
 const SignUpUser = async ( First_Name,Last_Name,Mobile,Mail,Password,role ) =>{
+    console.log(Mail);
     try {
         const farmer = await UserModel.findOne({ Mobile });
         const seller = await SellerModel.findOne({ Mobile });
@@ -51,7 +52,7 @@ const LoginUser= async (Mobile,Password)=>{
         if(farmer[0]){
             let value=farmer[0].Mail
             if(farmer[0].Password===Password && farmer[0].role==="Farmer"){
-                return { message: "login success", status: "success", value };
+                return { message: "login success", status: "success", value, data:farmer[0] };
             }
             else{
                 return { message: "Invalid Password", status: "failed" };
@@ -60,7 +61,7 @@ const LoginUser= async (Mobile,Password)=>{
         else if(seller[0]){
             let value=seller[0].Mail
             if(seller[0].Password===Password && seller[0].role==="Seller"){
-                return { message: "login success", status: "success", value };
+                return { message: "login success", status: "success", value ,data:seller[0] };
             }
             else{
                 return { message: "Invalid Password", status: "failed" };

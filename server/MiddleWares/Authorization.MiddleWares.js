@@ -1,6 +1,7 @@
 const {UserModel, SellerModel} = require("../models/User.model");
 
 const authenticate = async (Mail) => {
+    console.log(Mail,"ji");
     const user = await UserModel.find({ Mail });
     const seller = await SellerModel.find({ Mail });
   try {
