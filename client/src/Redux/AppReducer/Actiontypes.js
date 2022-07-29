@@ -1,0 +1,3 @@
+export const PRODUCT_SUCCESS="PRODUCT_SUCCESS"
+
+export const USER_DATA="USER_DATA"
