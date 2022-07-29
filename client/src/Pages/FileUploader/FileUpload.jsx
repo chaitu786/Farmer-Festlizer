@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useRef } from 'react'
 import axios from "axios"
+import { Box, Center, FormControl, FormLabel, Heading, Input, Stack, Textarea } from '@chakra-ui/react'
 
 const FileUpload = () => {
     const[data,setData]=useState({})
@@ -25,18 +26,53 @@ const FileUpload = () => {
             [name]:value
         })
     }
-
   return (
-    <div>
-        <form onSubmit={handleSubmit}>
-            <input type="text" onChange={handleChange} name="Title" placeholder='Title'/>
-            <input type="text" onChange={handleChange} name="Desc" placeholder='Description'/>
-            <input type="text" onChange={handleChange} name="Category" placeholder='Category'/>
-            <input type="file" ref={inputFile}/>
-            <input type="submit" />
-        </form>
-    </div>
+   
+   <>
+   <Heading textAlign={'center'} fontSize={{base:"2xl",md:'3xl'}}>Farmer Details Upload</Heading>
+   <Center>
+   <Box  width={{base:"2xl",md:"3xl",lg:'4xl',xl:'5xl'}} p={{base:"10"}}>
+<FormControl  onSubmit={handleSubmit} isRequired>
+  <FormLabel fontSize={{base:'sm',md:'md',lg:'lg',xl:"xl"}}>Title</FormLabel>
+  <Input placeholder='Title...' type="text" onChange={handleChange} name="Title" isInvalid
+    errorBorderColor='#808080'/>
+  <hr style={{marginTop:'2%'}}/>
+   <FormLabel fontSize={{base:'sm',md:'md',lg:'lg',xl:"xl"}}>Description</FormLabel>
+  <Textarea placeholder='Desc....' type="text" onChange={handleChange} name="Desc"isInvalid
+    errorBorderColor='#808080'/>
+   <hr style={{marginTop:'2%'}}/>
+   <FormLabel fontSize={{base:'sm',md:'md',lg:'lg',xl:"xl"}}>Category</FormLabel>
+  <Input placeholder='Category...' type="text" onChange={handleChange} name="Category" isInvalid
+    errorBorderColor='#808080'/>
+   <hr style={{marginTop:'2%'}}/>
+   <FormLabel fontSize={{base:'sm',md:'md',lg:'lg',xl:"xl"}} >File Upload</FormLabel>
+  <Input  type="file" ref={inputFile} isInvalid
+    errorBorderColor='#808080' />
+   <hr style={{marginTop:'2%'}}/>
+   <Input type='submit' bg={'brown'} color={'white'} fontSize={'2xl'}/>
+</FormControl>
+</Box>
+</Center>
+  
+   
+  
+   </>
   )
 }
 
 export default FileUpload
+
+
+
+
+
+
+//  <div>
+//         <form onSubmit={handleSubmit}>
+//             <input type="text" onChange={handleChange} name="Title" placeholder='Title'/>
+//             <input type="text" onChange={handleChange} name="Desc" placeholder='Description'/>
+//             <input type="text" onChange={handleChange} name="Category" placeholder='Category'/>
+//             <input type="file" ref={inputFile}/>
+//             <input type="submit" />
+//         </form>
+//     </div>
