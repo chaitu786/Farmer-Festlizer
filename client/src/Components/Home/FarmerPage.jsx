@@ -1,9 +1,8 @@
 import { Image, Input, useFocusEffect, } from '@chakra-ui/react'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {FcBiohazard} from "react-icons/fc"
 import {FcSearch} from "react-icons/fc"
-import { FarmersUpload } from './FarmersUpload'
-import { FarmersSchemes } from './FarmersSchemes'
+
 import {
   Heading,
   Avatar,
@@ -19,17 +18,26 @@ import {
   Show
 } from '@chakra-ui/react';
 import "./Farmers.css"
-import { useDispatch, useSelector } from 'react-redux'
-import { Get_User } from '../Redux/AppReducer/Action'
+import { FarmersData } from './FarmerData';
+import { FarmersSchemes } from './FarmerSchemes';
 
 
 export const FarmerPage = () => {
-  const UserData=useSelector((state)=>state.Reducer.User);
-  const dispatch=useDispatch()
-  useEffect(()=>{
-    dispatch(Get_User())
-  },[dispatch])
-  console.log(UserData,"ji");
+    const [isLogin,setIsLogin]=useState(false)
+    const [farmer,setisFarmer]=useState(false)
+    const User=localStorage.getItem("user").split(",")
+    const login=localStorage.getItem("isLogin")
+    
+    useEffect(()=>{
+        if(login==="true"){
+            setIsLogin(true)
+        }
+        if(User[3]==="Seller"){
+            setisFarmer(true)
+        }
+    },[])
+  console.log(isLogin)
+  console.log(User,"local");
   return (
     <>
     <Box display={'flex'} >
@@ -39,10 +47,10 @@ export const FarmerPage = () => {
       <Input placeholder='Explore' width={{base:"64",md:'64',lg:'64',xl:'64'}} / > 
         <FcSearch fontSize={'40px'}/>  
 </Stack> 
-<SocialProfileSimple />
+<SocialProfileSimple name={User[0]} name1={User[1]} number={User[2]} role={User[3]} isLogin={isLogin} isFormer={farmer}/>
 </Box>
 <Box mt={{base:'48',md:'10',lg:"10",xl:'10'}} ml={{base:'-350px',md:"10",lg:'10',xl:'10'}} style={{height:'100vh',overflowY:"scroll"}} className="imagescroll">
-<FarmersUpload/>
+<FarmersData isFarmer={farmer}/>
 </Box>
 <Show above='sm'>
 <Box >
@@ -54,7 +62,8 @@ export const FarmerPage = () => {
   )
 }
 
- function SocialProfileSimple() {
+ function SocialProfileSimple({name,name1,number, role, isLogin}) {
+    console.log(name,"find");
   return (
     <>
     <Show above='sm'>
@@ -88,20 +97,23 @@ export const FarmerPage = () => {
           }}
         />
         <Heading fontSize={{base:'sm',md:'md',lg:'lg',xl:"2xl"}} fontFamily={'body'}>
-          Lindsey James
+          {name} {name1}
         </Heading>
         <Text fontWeight={600} color={'gray.500'} mb={4}>
-          @lindsey_jam3s
+          @{number}
+        </Text>
+        <Text fontWeight={600} color={'gray.500'} mb={4}>
+          @{role}
         </Text>
         <Text
           textAlign={'center'}
           color={useColorModeValue('gray.700', 'gray.400')}
           px={3}>
-          Actress, musician, songwriter and artist. PM for work inquires or{' '}
+          Farmer, Farming, Fertilizer and Seller. Govt. work enquires 
           <Link href={'#'} color={'blue.400'}>
-            #tag
+            #Farming
           </Link>{' '}
-          me in your posts
+          in your Land
         </Text>
 
         <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
@@ -110,21 +122,21 @@ export const FarmerPage = () => {
             py={1}
             bg={useColorModeValue('gray.50', 'gray.800')}
             fontWeight={'400'}>
-            #art
+            #Farming
           </Badge>
           <Badge
             px={2}
             py={1}
             bg={useColorModeValue('gray.50', 'gray.800')}
             fontWeight={'400'}>
-            #photography
+            #Fertilizers
           </Badge>
           <Badge
             px={2}
             py={1}
             bg={useColorModeValue('gray.50', 'gray.800')}
             fontWeight={'400'}>
-            #music
+            #Soil
           </Badge>
         </Stack>
 
@@ -153,7 +165,9 @@ export const FarmerPage = () => {
             _focus={{
               bg: 'blue.500',
             }}>
-            LogOut
+            {
+                isLogin?("Logout"):("Login")
+            }
           </Button>
         </Stack>
       </Box>

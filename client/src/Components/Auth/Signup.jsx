@@ -21,8 +21,8 @@ import { useAlert } from 'react-alert'
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { useDispatch } from 'react-redux';
-import { Sigup_Success } from '../Redux/AppReducer/Action';
 import {useNavigate} from "react-router-dom"
+import { Sigup_Success } from '../../Redux/AppReducer/action';
 
 
 export const SignUp = () => {
@@ -40,7 +40,6 @@ export const SignUp = () => {
 
   const handleSignup=()=>{
     dispatch(Sigup_Success(alert,data,navigate))
-
   }
 
   return (
@@ -104,7 +103,7 @@ export default function SignupCard({handleChange,handleSubmit}) {
             </HStack>
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" name='Email' onChange={handleChange}/>
+              <Input type="email" name='Mail' onChange={handleChange}/>
             </FormControl>
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
@@ -177,7 +176,7 @@ export default function SignupCard({handleChange,handleSubmit}) {
             </HStack>
           <FormControl id="email" isRequired>
             <FormLabel>Email address</FormLabel>
-            <Input type="email"  name='Email' onChange={handleChange}/>
+            <Input type="email"  name='Mail' onChange={handleChange}/>
           </FormControl>
            <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
@@ -201,7 +200,7 @@ export default function SignupCard({handleChange,handleSubmit}) {
           <FormControl id="Role" isRequired>
             <FormLabel>Role</FormLabel>
            <Select placeholder='Select' name='role' onChange={handleChange}>
-             <option value='Sellar'>Seller</option>
+             <option value='Seller'>Seller</option>
               </Select>
           </FormControl>
           <Stack spacing={6}>
@@ -230,4 +229,3 @@ export default function SignupCard({handleChange,handleSubmit}) {
     </Stack>
   );
 }
-

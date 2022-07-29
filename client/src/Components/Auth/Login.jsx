@@ -1,6 +1,6 @@
-import React from 'react'
-
-
+import React, { useState } from 'react'
+import { useAlert } from 'react-alert'
+import {useNavigate} from "react-router-dom"
 import {
   Flex,
   Box,
@@ -12,11 +12,27 @@ import {
   Link,
   Button,
   Heading,
-  Text,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { useDispatch } from 'react-redux';
+import { Login_Success } from '../../Redux/AppReducer/action';
 
 export const Login = () => {
+  const [data,setData]=useState({})
+  const dispatch=useDispatch()
+  const alert=useAlert()
+  const navigate=useNavigate()
+  const handleChange=(e)=>{
+    const {name,value}=e.target
+    setData({
+      ...data,
+      [name]:value
+    })
+  }
+
+  const handleSubmit=()=>{
+    dispatch(Login_Success(alert,data,navigate))
+  }
   return (
     <Flex
       minH={'100vh'}
@@ -36,11 +52,11 @@ export const Login = () => {
           <Stack spacing={4}>
             <FormControl id="email" isRequired>
               <FormLabel>Mobile</FormLabel>
-              <Input type="Number" />
+              <Input type="Number" onChange={handleChange} name="Mobile"/>
             </FormControl>
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
-              <Input type="password" />
+              <Input type="password" onChange={handleChange} name="Password"/>
             </FormControl>
             <Stack spacing={10}>
               <Stack
@@ -55,7 +71,9 @@ export const Login = () => {
                 color={'white'}
                 _hover={{
                   bg: 'blue.500',
-                }}>
+                }}
+                onClick={handleSubmit}
+                >
                 Login
               </Button>
             </Stack>

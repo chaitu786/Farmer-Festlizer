@@ -6,16 +6,16 @@ import { useDispatch,useSelector,} from 'react-redux'
 import {AiOutlineDelete} from "react-icons/ai"
 import {BsBookmarkCheck} from "react-icons/bs"
 
-import { Get_data } from '../Redux/AppReducer/Action'
-import { Summary } from './Summary'
+// import { Get_data } from '../Redux/AppReducer/Action'
 
 export const Cart = () => {
-    const Product_data=useSelector((state)=>state.Reducer.Products)
-    const dispatch=useDispatch();
-    useEffect(()=>{
-        dispatch(Get_data())
-    },[])
-    console.log(Product_data)
+    // const Product_data=useSelector((state)=>state.Reducer.Products)
+    const Product_data=[]
+    // const dispatch=useDispatch();
+    // useEffect(()=>{
+    //     dispatch(Get_data())
+    // },[])
+    // console.log(Product_data)
   return (
     <>
    <Box>
@@ -42,53 +42,15 @@ export const Cart = () => {
                    <Button leftIcon={<AiOutlineDelete fontSize={'20px'}/>} width={{base:'fit-content',md:"auto"}} overflow={'hidden'}>Delete</Button>
                    <Button leftIcon={<BsBookmarkCheck fontSize={'20px'}/>} w={{base:'fit-content',md:"auto"}} overflow={'hidden'} ml={'10'}>Collections</Button>
                 </Box>
-            </Box>
+                </Box>
                
                     </Stack>
                 ))
             }
-           
-       
        </Box>
-        <Box>
-        <Summary/>
-        </Box>
        </Flex>
-      
     </Stack>
-   
    </Box>
-   <Show breakpoint='(max-width: 500px)'>
-  <Box mt={{md:'40'}} ml={'1'} borderRadius={'20px'} width={{base:"sm",md:'md',lg:'lg',xl:'xl'}} className='MainCartItem'>
-        <Stack >
-            <Stack justifyContent={'center'}>
-                <Heading textAlign={'center'} fontSize={'2xl'}>Summary</Heading>
-            </Stack>
-            <hr/>
-             <Stack  direction={'row'} justifyContent={'space-around'}>
-                <Text> ITEMS</Text>
-                <Text>4</Text>
-            </Stack>
-            <Stack  direction={'row'} justifyContent={'space-around'}>
-                <Text>SubTotal</Text>
-                <Text>47768</Text>
-            </Stack>
-             <Stack  direction={'row'} justifyContent={'space-around'}>
-                <Text>Charges</Text>
-                <Text>50</Text>
-            </Stack>
-            <hr></hr>
-            <Stack  direction={'row'} justifyContent={'space-around'}>
-                <Heading fontSize={'3xl'}>Total</Heading>
-                <Heading fontSize={'3xl'}>4000</Heading>
-            </Stack>
-            <Stack>
-                <Button borderRadius={'10px'} color={'black.400'} bg={'whatsapp.400'}>Continue</Button>
-            </Stack>
-        </Stack>
-
-    </Box>
-</Show>
   </>
   )
 }
