@@ -80,12 +80,15 @@ export const Login_Success=(alert,payload,navigate)=>()=>{
     })
 }
 
- export const AddToCart=(Id,alert)=>()=>{
+ export const AddToCart=(Id,alert)=>(dispatch)=>{
     axios.get(`http://localhost:8080/${Id}/addtocart`,{withCredentials:true}).then((r)=>{
         console.log(r);
         if("item added to cart"===r.data.message){
             alert.success("Item Collected Successfully")
         }
+    })
+    .then(()=>{
+      dispatch(Get_All_Data())
     })
     .catch((err)=>{
         alert.error("Something Went Wrong in axios")

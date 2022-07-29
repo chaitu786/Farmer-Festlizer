@@ -27,7 +27,7 @@ import { useNavigate } from 'react-router-dom';
 export const FarmerPage = () => {
     const [isLogin,setIsLogin]=useState(false)
     const [farmer,setisFarmer]=useState(false)
-    const User=localStorage.getItem("user").split(",")
+    const User=localStorage.getItem("user")?.split(",")||["","",""]
     const login=localStorage.getItem("isLogin")
     const dispatch=useDispatch()
     const navigate=useNavigate()

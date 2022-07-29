@@ -4,7 +4,7 @@ const authenticate = require("../MiddleWares/Authorization.MiddleWares");
 const { UserModel } = require("../models/User.model");
 const multer = require("multer")
 var random = require('random-name');
-console.log(random.middle())
+const name=random.middle()
 
 const productRouter = Router();
 
@@ -23,7 +23,7 @@ const storage=multer.diskStorage({
         cb(null,"./uploads")
     },
     filename:(req,file,cb)=>{
-        cb(null,`${random.middle()}.jpg`)
+        cb(null,file.originalname)
     },
 })
 const uploads=multer({storage:storage})
@@ -40,8 +40,9 @@ productRouter.post("/uploadIssue", uploads.single("Image_Url"), async(req,res)=>
           .status(401)
           .send({ message: "unauthorised user", status: "failed" });
     }
-    const { Title,Category, Desc, Number, Status, isCompleted } = req.body
-    const { message, status, value } = await UploadIssue( Title, Image_Url, Category,Desc, Name, Number, Mail, Status, isCompleted );
+    const { Title,Category, Desc, } = req.body
+    const Image_Url=req.file.originalname
+    const { message, status, value } = await UploadIssue( Title, Image_Url, Category,Desc ,Mail);
     if (status === "error") {
         return res.status(404).send({ message, status });
     }

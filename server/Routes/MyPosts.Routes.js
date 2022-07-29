@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { PostItems, Completed } = require("../Controller/MyPosts.controller");
+const { PostItems, Completed, Delete } = require("../Controller/MyPosts.controller");
 const authenticate = require("../MiddleWares/Authorization.MiddleWares");
 
 
@@ -21,8 +21,8 @@ postsRouter.get("/myposts", async(req,res)=>{
     return res.status(200).send({ message, status, data });
 })
 
-postsRouter.post("/delete",async(req,res)=>{
-    const { id }=req.body
+postsRouter.get("/:id/delete",async(req,res)=>{
+    const { id } = req.params;
     const Mail=req.cookies.auth
     console.log(Mail);
     const { user } = await authenticate(Mail);
@@ -33,6 +33,24 @@ postsRouter.post("/delete",async(req,res)=>{
     }
     console.log(id);
     const { message, status } = await Completed(id);
+    if (status === "error") {
+        return res.status(404).send({ message, status });
+    }
+    return res.status(200).send({ message, status  });
+})
+
+postsRouter.get("/:id/permenentDelete",async(req,res)=>{
+    const { id } = req.params;
+    const Mail=req.cookies.auth
+    console.log(Mail);
+    const { user } = await authenticate(Mail);
+    if (user === undefined || user.length === 0) {
+        return res
+          .status(401)
+          .send({ message: "unauthorised user", status: "failed" });
+    }
+    console.log(id);
+    const { message, status } = await Delete(id);
     if (status === "error") {
         return res.status(404).send({ message, status });
     }
