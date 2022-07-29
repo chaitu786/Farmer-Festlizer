@@ -14,7 +14,7 @@ const ProductData=useSelector((state)=>state.Reducer.Products?.data);
     dispatch(Get_All_Data())
   },[dispatch])
   console.log(ProductData)
-  const handleCart=(Id,alert)=>{
+  const handleCart=(Id)=>{
     dispatch(AddToCart(Id,alert))
   }
   return (
