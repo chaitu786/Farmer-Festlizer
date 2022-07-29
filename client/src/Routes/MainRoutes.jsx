@@ -7,6 +7,7 @@ import { Cart } from "../Pages/Cart/CartPage"
 import FileUpload from '../Pages/Upload/CreatePage'
 
 import NavBar from '../Components/Home/Header'
+import Weather from '../Pages/Weather'
 
 const MainRoutes = () => {
   return (
@@ -19,6 +20,7 @@ const MainRoutes = () => {
             <Route path="/login" element={<Login/>}></Route>
             <Route path="/cart" element={<Cart/>}></Route>
             <Route path="/create" element={<FileUpload/>}></Route>
+            <Route path='/weather' element={<Weather/>}></Route>
         </Routes>
     </div>
   )

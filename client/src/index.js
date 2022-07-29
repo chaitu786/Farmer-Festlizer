@@ -11,7 +11,7 @@ import AlertTemplate from 'react-alert-template-basic'
 import { store } from './Redux/Store';
 
 const breakpoints = {
-  sm: '450px',
+  sm: '430px',
   md: '768px',
   lg: '960px',
   xl: '1200px',

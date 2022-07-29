@@ -1,4 +1,4 @@
-import { Box, Button, Center, Flex, Heading, Image, Show, Stack, Text } from '@chakra-ui/react'
+import { AspectRatio, Box, Button, Center, Flex, Heading, Image, Show, Stack, Text } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import "../../Components/Home/Farmers.css"
 import {FcBiohazard} from "react-icons/fc"
@@ -17,15 +17,15 @@ export const Cart = () => {
     console.log(Cart_Data,"ji")
   return (
     <>
-   <Box>
+   <Box mt={{md:'24'}}>
     <Stack>
         <Center>
         <Box>
-            <FcBiohazard fontSize={'100px'}/>
+            <FcBiohazard fontSize={'100'}/>
             <Text fontSize={{base:"2xl",md:'3xl',lg:'3xl',xl:'3xl'}} fontStyle={'oblique'} color={{base:"#397ec3",md:"#2cbcbc"}}>Farmer Cart</Text>
         </Box>
         </Center>
-        <Flex  flexDirection={'row'}>
+        <Flex  flexDirection={{base:'column',md:'row'}}>
         <Box style={{height:'90vh',overflowY:"scroll",}} className="imagescroll">
        
             {
@@ -47,9 +47,16 @@ export const Cart = () => {
                 ))
             }
        </Box>
+       <Box ml={{md:'28'}} mt={{base:'10',md:'12'}}>
+        <Center>
+             <iframe width={{base:'sm',md:'md',lg:'lg',xl:'xl'}} height="315" src="https://www.youtube.com/embed/2ilvok75Tqs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </Center>
+       </Box>
        </Flex>
+       
     </Stack>
    </Box>
+   
   </>
   )
 }
