@@ -10,12 +10,12 @@ import { Get_data } from '../Redux/AppReducer/Action'
 import { Summary } from './Summary'
 
 export const Cart = () => {
-    const Product_data=useSelector((state)=>state.Reducer.Products)
-    const dispatch=useDispatch();
-    useEffect(()=>{
-        dispatch(Get_data())
-    },[])
-    console.log(Product_data)
+    // const Product_data=useSelector((state)=>state.Reducer.Products)
+    // const dispatch=useDispatch();
+    // useEffect(()=>{
+    //     dispatch(Get_data())
+    // },[])
+    // console.log(Product_data)
   return (
     <>
    <Box>
@@ -29,7 +29,7 @@ export const Cart = () => {
         <Flex  flexDirection={'row'}>
         <Box style={{height:'90vh',overflowY:"scroll",}} className="imagescroll">
        
-            {
+            {/* {
                 Product_data?.map((el)=>(
                     <Stack direction={{base:"column",md:"row",lg:'row',xl:'row'}}  width={{base:"sm",md:'auto',lg:'auto',xl:'xl'}}  ml={{base:'1',md:'16',lg:"16",xl:'16'}} mt='5' borderRadius={'20px'} className='MainCartItem'>
                             <Box padding={{base:"8"}}  >
@@ -46,7 +46,7 @@ export const Cart = () => {
                
                     </Stack>
                 ))
-            }
+            } */}
            
        
        </Box>

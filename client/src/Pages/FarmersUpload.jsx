@@ -8,8 +8,6 @@ import "./Farmers.css"
 export const FarmersUpload = () => {
     const ProductData=useSelector((state)=>state.Reducer.Products);
     const dispatch=useDispatch();
-
-
     useEffect(()=>{
         dispatch(Get_data())
     },[])
