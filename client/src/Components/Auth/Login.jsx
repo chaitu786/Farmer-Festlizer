@@ -13,6 +13,7 @@ import {
   Button,
   Heading,
   useColorModeValue,
+  Text,
 } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import { Login_Success } from '../../Redux/AppReducer/Action';
@@ -32,6 +33,9 @@ export const Login = () => {
 
   const handleSubmit=()=>{
     dispatch(Login_Success(alert,data,navigate))
+  }
+  const handleRegister=()=>{
+    navigate("/signup")
   }
   return (
     <Flex
@@ -76,6 +80,7 @@ export const Login = () => {
                 >
                 Login
               </Button>
+              <Text textAlign={"center"}>Don't Have Account?<span style={{color:"green", cursor:"pointer",textDecoration:"underline"}} onClick={handleRegister}> Register</span></Text>
             </Stack>
           </Stack>
         </Box>
