@@ -1,11 +1,34 @@
-import React from "react";
-import { Link, Box, Flex, Text, Button, Stack } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { Link, Box, Flex, Text, Button, Stack, useDisclosure } from "@chakra-ui/react";
 
 import Logo from "../Home/Logo"
+import { Logout } from "../../Redux/AppReducer/Action";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
-
+  const [isCart,setIsCart]=useState(false)
+  const [isLogin,setIsLogin]=useState(false)
+  let role=localStorage.getItem("role")
+  const login=localStorage.getItem("isLogin")
+  const dispatch=useDispatch()
+  const navigate=useNavigate()
+  useEffect(()=>{
+    if(role==="Farmer"){
+      setIsCart(true)
+    }
+    if(login==="true"){
+      setIsLogin(true)
+  }
+  },[role,login])
+  const handleLogout=()=>{
+    console.log(1);
+    dispatch(Logout())
+  }
+  const handleClick=()=>{
+    navigate("/")
+  }
   const toggle = () => setIsOpen(!isOpen);
 
   return (
@@ -13,9 +36,10 @@ const NavBar = (props) => {
       <Logo
         w="100px"
         color={["white", "white", "primary.500", "primary.500"]}
+        onclick={handleClick}
       />
       <MenuToggle toggle={toggle} isOpen={isOpen} />
-      <MenuLinks isOpen={isOpen} />
+      <MenuLinks isOpen={isOpen} isCart={isCart} isLogin={isLogin} handleLog={handleLogout} role={role}/>
     </NavBarContainer>
   );
 };
@@ -60,7 +84,7 @@ const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
   );
 };
 
-const MenuLinks = ({ isOpen }) => {
+const MenuLinks = ({ isOpen, isCart, isLogin, handleLog, role }) => {
   return (
     <Box
       display={{ base: isOpen ? "block" : "none", md: "block" }}
@@ -73,11 +97,11 @@ const MenuLinks = ({ isOpen }) => {
         direction={["column", "row", "row", "row"]}
         pt={[4, 4, 0, 0]}
       >
-        <MenuItem to="/">Home</MenuItem>
-        <MenuItem to="/how">How It works </MenuItem>
-        <MenuItem to="http://localhost:8080/chat/">Features </MenuItem>
-        <MenuItem to="/pricing">Pricing </MenuItem>
-        <MenuItem to="/signup" isLast>
+        <Box>{isCart?(<MenuItem to="/create">Create</MenuItem>):(<MenuItem to="/">Home</MenuItem>)}</Box>
+        <MenuItem to="http://localhost:8080/chat/">Chat</MenuItem>
+        <MenuItem to="/weather">Weather</MenuItem>
+        <Box>{isCart?(<MenuItem to="/myposts">My Posts</MenuItem>):(<MenuItem to="/cart">Cart</MenuItem>)}</Box>
+        <>
           <Button
             size="sm"
             rounded="md"
@@ -87,9 +111,9 @@ const MenuLinks = ({ isOpen }) => {
               bg: ["primary.100", "primary.100", "primary.600", "primary.600"]
             }}
           >
-            Create Account
+           {isLogin?(<Text onclick={()=>handleLog}>{role}</Text>):(<MenuItem to="/signup" isLast>Login</MenuItem>)}
           </Button>
-        </MenuItem>
+        </>
       </Stack>
     </Box>
   );
