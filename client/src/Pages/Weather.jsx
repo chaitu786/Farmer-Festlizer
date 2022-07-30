@@ -65,8 +65,8 @@ const Weather = () => {
                     <Box >
                         <Heading fontSize={{base:'sm',md:'md',lg:'lg',xl:'xl'}} textAlign={{base:"center"}}><span style={{color:"blue"}} onClick={handleForecast} mt={5}>Click Here </span>See the Next 7 Days ForeCast</Heading>
                     </Box>
-                    <Flex direction={{base:'column',md:'row'}} width={{base:"sm",md:'md',lg:'lg',xl:'xl'}} mt={10} ml={{base:"5"}}>
-                        <Box border={"1px solid red"} backgroundColor={'#ff0ed7'} fontWeight={'bold'} width={{base:'sm',md:'xl',lg:'xl',xl:'xl'}} textAlign="left" paddingLeft={50}  mt={{base:'5'}} ml={{base:'5'}} borderRadius={10}>
+                    <Flex direction={{base:'column',md:'row'}} width={{base:"sm",md:'md',lg:'lg',xl:'xl'}} mt={10} ml={{base:"5"}} >
+                        <Box border={"1px solid red"} backgroundColor={'#ff0ed7'} fontWeight={'bold'} width={{base:'sm',md:'xl',lg:'xl',xl:'xl'}} textAlign="left" pl={'5'}  mt={{base:'5'}} ml={{base:'5'}} borderRadius={10}>
                             <p>City : {weatherData.name}</p>
                             <p>Sunrise : {weatherData.sys?.sunrise}</p>
                             <p>Sunset : {weatherData.sys?.sunset}</p>
@@ -78,7 +78,7 @@ const Weather = () => {
                             <p>Wind Speed : {weatherData.wind?.speed}</p>
                             <p>Clouds  : {weatherData.clouds?.all}</p>
                         </Box>
-                        <Box mt={{base:'5'}} ml={{base:'10'}}>
+                        <Box mt={{base:'5'}} ml={{base:'10'}} >
                             <iframe border={"solid #ff0ed7"} color={"#ff0ed7"} fontWeight={"bold"}  textAlign={"left"} paddingTop={5}  marginTop={40} height={300} width={{base:'sm',md:'400px'}} borderRadius={10} src={`https://www.google.com/maps/embed/v1/place?q=${weatherData.name}&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8`} title="Map"></iframe>
                         </Box>   
                     </Flex> 
@@ -87,10 +87,10 @@ const Weather = () => {
             ):("")
         }
         <Center>
-        <Flex direction={{base:'column',md:'row'}} width={{base:"sm",md:'80%'}}  marginTop={50}>
+        <Flex direction={{base:'column',md:'row'}} width={{base:"sm",md:'80%'}}  marginTop={50} >
             {
                 foreCast.map((el)=>(
-                    <Box style={{border:"1px solid red", borderRadius:10,backgroundColor:"#10a310", fontWeight:"bold",marginLeft:"20px",marginTop:'20px'}}>
+                    <Box style={{border:"1px solid red", borderRadius:10,backgroundColor:"#10a310", fontWeight:"bold",marginLeft:"20px",marginTop:'20px'}} pl={5}>
                         <Text>{Date(el.dt*1000)}</Text>
                         <Image src={`http://openweathermap.org/img/wn/${el.weather[0].icon}@2x.png`} alt="" />
                         <Text>Day Temp : {el.temp.day.toFixed(0)}C</Text>
