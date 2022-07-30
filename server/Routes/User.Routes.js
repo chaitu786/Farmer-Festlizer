@@ -27,17 +27,19 @@ userRouter.post("/signup", async(req,res)=>{
 //login
 userRouter.post("/login", async (req, res) => {
     const { Mobile, Password } = req.body;
+    console.log(Mobile );
     if (Mobile.toString().length !== 10) {
         return res.status(200).send({ message: "Invalid Mobile Number" });
     }
     const { message, status, value, data } = await LoginUser(Mobile.toString(), Password);
+    console.log(value);
     if (status === "error") {
       return res.status(404).send({ message, status });
     } else if (status === "failed") {
       return res.status(201).send({ message, status });
     }
     return res
-      .cookie("auth", value, { httpOnly: true, secure: false, maxAge:86400000 })
+      .cookie("auth", value, { httpOnly: true, secure: false})
       .status(200)
       .send({ message, status, value, data });
 });

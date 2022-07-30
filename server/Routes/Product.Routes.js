@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { getAllData,UploadIssue, addToCart, Completed } = require("../Controller/Product.Controller");
+const { getAllData,UploadIssue, addToCart, Completed, RemoveFromCart } = require("../Controller/Product.Controller");
 const authenticate = require("../MiddleWares/Authorization.MiddleWares");
 const { UserModel } = require("../models/User.model");
 const multer = require("multer")
@@ -29,6 +29,7 @@ const storage=multer.diskStorage({
 const uploads=multer({storage:storage})
 productRouter.post("/uploadIssue", uploads.single("Image_Url"), async(req,res)=>{
     const Mail = req.cookies.auth;
+    console.log(Mail);
     if (Mail === null || undefined) {
       return res
         .status(401)
@@ -80,13 +81,14 @@ productRouter.get("/:id/addtocart", async(req,res)=>{
 
 
 productRouter.get("/:id/removefromcart", async(req,res)=>{
+    
     const Mail=req.cookies.auth
     if(Mail===null || undefined){
         return res
         .status(401)
         .send({ message: "session expired", status: "user logged out" });
     }
-    const { id } = req.params;
+    const { id } = req.params;console.log(id);
     const { seller } = await authenticate(Mail);
     if (seller === undefined || seller.length === 0) {
         return res
