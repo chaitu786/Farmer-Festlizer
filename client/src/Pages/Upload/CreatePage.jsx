@@ -35,7 +35,7 @@ const FileUpload = () => {
   return (
    
    <>
-   <Heading textAlign={'center'} fontSize={{base:"2xl",md:'3xl'}}>Farmer Details Upload</Heading>
+   <Heading textAlign={'center'} fontSize={{base:"2xl",md:'3xl'}} mt={'24'}>Farmer Details Upload</Heading>
    <Center>
    <Box  width={{base:"2xl",md:"3xl",lg:'4xl',xl:'5xl'}} p={{base:"10"}}>
 <FormControl  isRequired>

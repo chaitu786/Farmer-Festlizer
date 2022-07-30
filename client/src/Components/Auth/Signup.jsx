@@ -23,6 +23,7 @@ import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { useDispatch } from 'react-redux';
 import {useNavigate} from "react-router-dom"
 import { Sigup_Success } from '../../Redux/AppReducer/Action';
+import { Link as RouterLink } from 'react-router-dom';
 
 
 export const SignUp = () => {
@@ -43,8 +44,8 @@ export const SignUp = () => {
   }
 
   return (
-    <Tabs isFitted variant='enclosed'>
-  <TabList mb='1em'>
+    <Tabs isFitted variant='enclosed' mt={'28'}>
+  <TabList mb='1em'mr={'12'}>
     <Tab color={'darkmagenta'} fontWeight={'semibold'}>COMPANY</Tab>
     <Tab color={'darkmagenta'} fontWeight={'semibold'}>FARMERS</Tab>
   </TabList>
@@ -71,7 +72,7 @@ export const SignUp = () => {
 }
 
 
-export default function SignupCard({handleChange,handleSubmit}) {
+export default function SignupCard({handleChange,handleSubmit,}) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -141,10 +142,11 @@ export default function SignupCard({handleChange,handleSubmit}) {
                 }} onClick={handleSubmit}>
                 Sign up
               </Button>
+             
             </Stack>
             <Stack pt={6}>
               <Text align={'center'}>
-                Already a user? <Link color={'blue.400'}>Login</Link>
+                Already a user? <RouterLink to='/login' color={'blue.400'}>Login</RouterLink>
               </Text>
             </Stack>
           </Stack>
@@ -214,6 +216,9 @@ export default function SignupCard({handleChange,handleSubmit}) {
             <Button colorScheme={'blue'} variant={'solid'} onClick={handleSubmit}>
               Sign Up
             </Button>
+             <Text align={'center'}>
+                Already a user? <RouterLink to='/login' color={'blue.400'}>Login</RouterLink>
+              </Text>
           </Stack>
         </Stack>
       </Flex>

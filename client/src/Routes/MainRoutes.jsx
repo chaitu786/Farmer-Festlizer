@@ -25,6 +25,7 @@ const MainRoutes = () => {
             <Route path="/create" element={<FileUpload/>}></Route>
             <Route path='/weather' element={<Weather/>}></Route>
             <Route path="/myposts" element={<MyPosts/>}></Route>
+           
         </Routes>
     </div>
   )
