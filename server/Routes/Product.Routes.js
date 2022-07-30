@@ -78,4 +78,27 @@ productRouter.get("/:id/addtocart", async(req,res)=>{
     return res.status(200).send({ message, status });
 })
 
+
+productRouter.get("/:id/removefromcart", async(req,res)=>{
+    const Mail=req.cookies.auth
+    if(Mail===null || undefined){
+        return res
+        .status(401)
+        .send({ message: "session expired", status: "user logged out" });
+    }
+    const { id } = req.params;
+    const { seller } = await authenticate(Mail);
+    if (seller === undefined || seller.length === 0) {
+        return res
+          .status(401)
+          .send({ message: "unauthorised user", status: "failed" });
+    }
+    const { message, status } = await RemoveFromCart(id, Mail);
+    if (status === "error") {
+        return res.status(404).send({ message, status });
+    }
+    
+    return res.status(200).send({ message, status });
+})
+
 module.exports = { productRouter }

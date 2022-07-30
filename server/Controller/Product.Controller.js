@@ -50,8 +50,29 @@ const addToCart=async(id,Mail)=>{
         return { message: "something went wrong", status: "error" };
     }
 }
+
+
+const RemoveFromCart=async(id,Mail)=>{
+    try {
+        const data = await DataModel.findById(id);
+        await SellerModel.updateOne(
+          { Mail },
+          { $push: { Cart: { productId: data._id } } }
+        );
+        await DataModel.findByIdAndUpdate(id,{Status:true})
+        return {
+          message: "item removed from cart",
+          status: "success",
+    
+        };
+    } catch (err) {
+        return { message: "something went wrong", status: "error" };
+    }
+}
+ 
 module.exports = {
     getAllData,
     UploadIssue, 
     addToCart,
+    RemoveFromCart
 };
