@@ -31,9 +31,9 @@ This is simple explanation about our website
 - Node JS
 - Express JS
 - MongoDB
+- Web Sockets
 - Chakra UI
 - Git
--Web Sockets
 
 ### Features
 
