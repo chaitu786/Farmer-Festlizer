@@ -2,7 +2,7 @@ import * as types from "./Actiontypes"
 import axios from "axios"
 
 export const Get_All_Data=()=>(dispatch)=>{
-   axios.get("http://localhost:8080/data").then((r)=>{
+   axios.get("https://farmer-backend.onrender.com/data").then((r)=>{
       dispatch({type:types.PRODUCT_SUCCESS,payload:r.data})
    })
    .catch((err)=>{
@@ -11,7 +11,7 @@ export const Get_All_Data=()=>(dispatch)=>{
 };
 
 export const Get_Cart_Data=()=>(dispatch)=>{
-   axios.get("http://localhost:8080/cart",{withCredentials:true}).then((r)=>{
+   axios.get("https://farmer-backend.onrender.com/cart",{withCredentials:true}).then((r)=>{
       console.log(r.data.data,);
       dispatch({type:types.CART_DATA,payload:r.data.data})
    })
@@ -22,7 +22,7 @@ export const Get_Cart_Data=()=>(dispatch)=>{
 
 
 export const Get_MyPosts_Data=()=>(dispatch)=>{
-   axios.get("http://localhost:8080/myposts",{withCredentials:true}).then((r)=>{
+   axios.get("https://farmer-backend.onrender.com/myposts",{withCredentials:true}).then((r)=>{
       console.log(r.data.data,);
       dispatch({type:types.MY_POSTS_DATA,payload:r.data.data})
    })
@@ -32,7 +32,7 @@ export const Get_MyPosts_Data=()=>(dispatch)=>{
 };
 
 export const Sigup_Success=(alert,payload,navigate)=>(dispatch)=>{
-   axios.post("http://localhost:8080/signup",payload).then((r)=>{
+   axios.post("https://farmer-backend.onrender.com/signup",payload).then((r)=>{
       if(r.data.message==="user created"){
          alert.success("User Registration successfull")
          setTimeout(()=>{
@@ -53,7 +53,7 @@ export const Sigup_Success=(alert,payload,navigate)=>(dispatch)=>{
 
 
 export const Login_Success=(alert,payload,navigate)=>()=>{
-    axios.post("http://localhost:8080/login",payload,{withCredentials:true}).then((r)=>{
+    axios.post("https://farmer-backend.onrender.com/login",payload,{withCredentials:true}).then((r)=>{
        console.log(r.data.data.role,"ji");
        if(r.data.message==="login success"){
           localStorage.setItem("isLogin",true)
@@ -81,7 +81,7 @@ export const Login_Success=(alert,payload,navigate)=>()=>{
 }
 
  export const AddToCart=(Id,alert)=>(dispatch)=>{
-    axios.get(`http://localhost:8080/${Id}/addtocart`,{withCredentials:true}).then((r)=>{
+    axios.get(`https://farmer-backend.onrender.com/${Id}/addtocart`,{withCredentials:true}).then((r)=>{
         console.log(r);
         if("item added to cart"===r.data.message){
             alert.success("Item Collected Successfully")
@@ -98,7 +98,7 @@ export const Login_Success=(alert,payload,navigate)=>()=>{
 
 export const Upload_Issue=(formData,alert)=>(dispatch)=>{
    console.log(formData);
-   axios.post("http://localhost:8080/uploadIssue",formData,{withCredentials:true},{headers:{"Content-Type":"multiple/form-data"}}).then((r)=>{
+   axios.post("https://farmer-backend.onrender.com/uploadIssue",formData,{withCredentials:true},{headers:{"Content-Type":"multiple/form-data"}}).then((r)=>{
       console.log(r,"multer");
       if(r.data.message==="data uploaded"){
          alert.success("Your Post Uploaded uploaded")
@@ -121,7 +121,7 @@ export const Upload_Issue=(formData,alert)=>(dispatch)=>{
 
 export const Logout=()=>(dispatch)=>{
    console.log(1,"ji");
-   axios.get(`http://localhost:8080/logout`,{withCredentials:true}).then((res)=>{
+   axios.get(`https://farmer-backend.onrender.com/logout`,{withCredentials:true}).then((res)=>{
       console.log(res.data.message,"jil");
       if(res.data.message==="user logout successfully"){
          localStorage.setItem("isLogin",false)
@@ -138,7 +138,7 @@ export const Logout=()=>(dispatch)=>{
 }
 
 export const Delete=(Id,alert)=>()=>{
-   axios.get(`http://localhost:8080/${Id}/delete`,{withCredentials:true}).then((r)=>{
+   axios.get(`https://farmer-backend.onrender.com/${Id}/delete`,{withCredentials:true}).then((r)=>{
        if("item marked as completed"===r.data.message){
            alert.success("item marked as completed")
        }
@@ -151,7 +151,7 @@ export const Delete=(Id,alert)=>()=>{
 
 
 export const PermenentDelete=(Id,alert)=>(dispatch)=>{
-   axios.get(`http://localhost:8080/${Id}/permenentDelete`,{withCredentials:true}).then((r)=>{
+   axios.get(`https://farmer-backend.onrender.com/${Id}/permenentDelete`,{withCredentials:true}).then((r)=>{
       console.log(r.data);
        if("item deleted successfully"===r.data.message){
            alert.success("item deleted successfully")
