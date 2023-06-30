@@ -36,6 +36,7 @@ export const Sigup_Success=(alert,payload,navigate)=>(dispatch)=>{
       return
    }
    axios.post(`${baseRoute}/signup`,payload).then((r)=>{
+      console.log(r,'adkhbasjhdasd');
       if(r.data.message==="user created"){
          alert.success("User Registration successfull")
          setTimeout(()=>{
@@ -45,10 +46,8 @@ export const Sigup_Success=(alert,payload,navigate)=>(dispatch)=>{
       else if(r.data.message==="exists"){
          alert.show("User Already Exist")
       }
-      else if (r.data.message==="error"){
-         alert.error("Something Went Wrong")
-      }else{
-         alert.error(r.data.message)
+     else{
+         alert.error(r.data.message || "Something went wrong.")
       }
    })
    .catch((err)=>{

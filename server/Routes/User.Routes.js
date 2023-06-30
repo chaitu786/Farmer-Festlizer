@@ -4,13 +4,15 @@ const userRouter = Router();
 
 // create user
 userRouter.post("/signup", async(req,res)=>{
-    const { First_Name,Last_Name,Mobile,Mail,Password,role } = req.body
+    const { First_Name,Last_Name,Mobile,Mail,Password,role="" } = req.body
     if(Mobile&& Mobile.toString().length!==10){
-        return res.status(400).send({message:"Invalid Mobile Number",status:"error"})
+        return res.status(200).send({message:"Invalid Mobile Number",status:"error"})
     }else if(!Password){
-        return res.status(400).send({message:"Please enter password",status:"error"})
+        return res.status(200).send({message:"Please enter password",status:"error"})
     }else if(Password.length<6){
-        return res.status(400).send({message:"Atlease password length should 6 letters",status:"error"})
+        return res.status(200).send({message:"Atlease password length should 6 letters",status:"error"})
+    }else if(role.trim() == ""){
+        return res.status(200).send({message:"Please Select role",status:"error"})
     }
     const { message, status }= await SignUpUser(
         First_Name,
