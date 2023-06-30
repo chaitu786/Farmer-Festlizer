@@ -47,6 +47,8 @@ export const Sigup_Success=(alert,payload,navigate)=>(dispatch)=>{
       }
       else if (r.data.message==="error"){
          alert.error("Something Went Wrong")
+      }else{
+         alert.error(r.data.message)
       }
    })
    .catch((err)=>{
@@ -57,7 +59,6 @@ export const Sigup_Success=(alert,payload,navigate)=>(dispatch)=>{
 
 export const Login_Success=(alert,payload,navigate)=>()=>{
     axios.post(`${baseRoute}/login`,payload,{withCredentials:true}).then((r)=>{
-       console.log(r.data.data.role,"ji");
        if(r.data.message==="login success"){
           localStorage.setItem("isLogin",true)
           localStorage.setItem("role",r.data.data.role)
@@ -78,7 +79,7 @@ export const Login_Success=(alert,payload,navigate)=>()=>{
        }
     })
     .catch((err)=>{
-       alert.error("Something Went Wrong in axios")
+       alert.error(err.data.message || "Something Went Wrong in axios")
        console.log(err);
     })
 }
