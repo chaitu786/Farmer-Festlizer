@@ -1,5 +1,4 @@
 const { UserModel, SellerModel } = require('../models/User.model');
-const Cookies = require('cookies');
 
 
 const SignUpUser = async ( First_Name,Last_Name,Mobile,Mail,Password,role ) =>{
