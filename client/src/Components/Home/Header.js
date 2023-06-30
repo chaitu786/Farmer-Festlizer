@@ -98,7 +98,7 @@ const MenuLinks = ({ isOpen, isCart, isLogin, handleLog, role }) => {
         pt={[4, 4, 0, 0]}
       >
         <Box>{isCart?(<MenuItem to="/create">Create</MenuItem>):(<MenuItem to="/">Home</MenuItem>)}</Box>
-        <MenuItem to="http://localhost:8080/chat/">Chat</MenuItem>
+        <MenuItem to="https://farmer-backend.onrender.com/chat/">Chat</MenuItem>
         <MenuItem to="/weather">Weather</MenuItem>
         <Box>{isCart?(<MenuItem to="/myposts">My Posts</MenuItem>):(<MenuItem to="/cart">Cart</MenuItem>)}</Box>
         <>
