@@ -51,7 +51,7 @@ userRouter.post("/login", async (req, res) => {
       return res.status(201).send({ message, status });
     }
     return res
-      .cookie("auth", value, { httpsOnly: true, secure: false})
+      .cookie("auth", value)
       .status(200)
       .send({ message, status, value, data });
 });
