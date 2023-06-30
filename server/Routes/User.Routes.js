@@ -5,7 +5,7 @@ const userRouter = Router();
 // create user
 userRouter.post("/signup", async(req,res)=>{
     const { First_Name,Last_Name,Mobile,Mail,Password,role } = req.body
-    if(Mobile && Mobile.toString().length!==10){
+    if(Mobile&& Mobile.toString().length!==10){
         return res.status(400).send({message:"Invalid Mobile Number",status:"error"})
     }else if(!Password){
         return res.status(400).send({message:"Please enter password",status:"error"})
