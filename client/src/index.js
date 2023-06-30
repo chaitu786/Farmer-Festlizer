@@ -33,7 +33,7 @@ const colors = {
 
 const options = {
   timeout: 5000,
-  position: positions.BOTTOM_CENTER
+  position: positions.TOP_RIGHT
 };
 
 const theme = extendTheme({ breakpoints,colors })

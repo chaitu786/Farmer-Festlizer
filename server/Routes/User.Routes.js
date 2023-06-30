@@ -6,7 +6,7 @@ const userRouter = Router();
 userRouter.post("/signup", async(req,res)=>{
     const { First_Name,Last_Name,Mobile,Mail,Password,role } = req.body
     if(Mobile.toString().length!==10){
-        return res.send(200).send({message:"Invalid Mobile Number"})
+        return res.status(200).send({message:"Invalid Mobile Number"})
     }
     const { message, status }= await SignUpUser(
         First_Name,
