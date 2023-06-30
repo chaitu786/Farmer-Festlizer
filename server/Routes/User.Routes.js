@@ -1,7 +1,6 @@
 const { Router }=require("express");
 const { SignUpUser,LoginUser, getAllUsers } = require("../Controller/User.controller");
 const userRouter = Router();
-const Cookies = require('cookies');
 
 // create user
 userRouter.post("/signup", async(req,res)=>{
@@ -34,7 +33,6 @@ userRouter.post("/signup", async(req,res)=>{
 //login
 userRouter.post("/login", async (req, res) => {
     const { Mobile, Password } = req.body;
-    const cookies = new Cookies(req, res);
     console.log(Mobile );
     if (Mobile && Mobile.toString().length !== 10) {
         return res.status(200).send({ message: "Invalid Mobile Number" });
@@ -51,11 +49,11 @@ userRouter.post("/login", async (req, res) => {
     } else if (status === "failed") {
       return res.status(201).send({ message, status });
     }
-    cookies.set("auth", value, { httpOnly: true, secure: true})
-    // res.cookie("auth", value, { httpOnly: true, secure: true})
+    res.session.auth = value
     return res
-      .status(200)
-      .send({ message, status, value, data });
+        .cookie("auth", value, { httpOnly: true, secure: true})
+        .status(200)
+        .send({ message, status, value, data });
 });
 
 userRouter.get("/logout",async(req,res)=>{
@@ -65,7 +63,7 @@ userRouter.get("/logout",async(req,res)=>{
 })
 
 userRouter.get("/users",async(req,res)=>{
-    const Mail=req.cookies.auth
+    const Mail=req.cookies.auth || req.session.auth;
     if(Mail===null || undefined){
         return res
         .status(401)
