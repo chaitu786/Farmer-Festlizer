@@ -1,4 +1,5 @@
 const { UserModel, SellerModel } = require('../models/User.model');
+const Cookies = require('cookies');
 
 
 const SignUpUser = async ( First_Name,Last_Name,Mobile,Mail,Password,role ) =>{
@@ -47,12 +48,13 @@ const SignUpUser = async ( First_Name,Last_Name,Mobile,Mail,Password,role ) =>{
 const LoginUser= async (Mobile,Password)=>{
     const seller = await SellerModel.find({ Mobile })
     const farmer= await UserModel.find({ Mobile })
-    console.log(seller,farmer,Password,'asdljbawkjdbasd');
+    const cookies = new Cookies(req, res);
     try {
         
         if(farmer[0]){
             let value=farmer[0].Mail
             if(farmer[0].Password == Password && farmer[0].role=="Farmer"){
+                cookies.set("auth", value, { httpOnly: true, secure: true})
                 return { message: "login success", status: "success", value, data:farmer[0] };
             }
             else{
