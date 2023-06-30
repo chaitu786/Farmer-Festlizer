@@ -1,6 +1,6 @@
 import * as types from "./Actiontypes"
 import axios from "axios"
-let baseRoute ="https://farmer-backend.onrender.com" // "http://localhost:8080"
+let baseRoute = "http://localhost:8080" //"https://farmer-backend.onrender.com" 
 export const Get_All_Data=()=>(dispatch)=>{
    axios.get(`${baseRoute}/data`).then((r)=>{
       dispatch({type:types.PRODUCT_SUCCESS,payload:r.data})
