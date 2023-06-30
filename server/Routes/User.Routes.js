@@ -44,14 +44,13 @@ userRouter.post("/login", async (req, res) => {
         return res.status(400).send({message:"Please enter a correct password",status:"error"})
     }
     const { message, status, value, data } = await LoginUser(Mobile.toString(), Password);
-    console.log(value);
     if (status === "error") {
       return res.status(404).send({ message, status });
     } else if (status === "failed") {
       return res.status(201).send({ message, status });
     }
+    res.cookie("auth", value, { httpOnly: true, secure: true})
     return res
-      .cookie("auth", value, { httpOnly: true, secure: true})
       .status(200)
       .send({ message, status, value, data });
 });
