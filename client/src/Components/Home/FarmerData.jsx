@@ -28,7 +28,7 @@ const ProductData=useSelector((state)=>state.Reducer.Products?.data);
                         <Stack direction={{base:"column",md:'row'}} border={'1px solid black'}
                         width={{base:"sm",md:"md",lg:"lg",xl:"xl"}} mt={'10'}   borderRadius={"20px"} className='MainCartItem'>
                             <Box padding={{base:"8",md:'8'}}>
-                                <Image src={`http://localhost:8080/static/${el.Image_Url}`}  width={{base:"sm",md:"md",lg:"lg",xl:"xl"}}/>
+                                <Image src={`https://farmer-backend.onrender.com/static/${el.Image_Url}`}  width={{base:"sm",md:"md",lg:"lg",xl:"xl"}}/>
                             </Box>
                             <Box padding={{base:"8",md:'10'}}>
                                 <Text>{el.Title}</Text>
