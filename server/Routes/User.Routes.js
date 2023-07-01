@@ -49,7 +49,7 @@ userRouter.post("/login", async (req, res) => {
     } else if (status === "failed") {
       return res.status(201).send({ message, status });
     }
-    res.session.auth = value
+    localStorage.setItem(auth, value)
     return res
         .cookie("auth", value, { httpOnly: true, secure: true})
         .status(200)
@@ -63,7 +63,7 @@ userRouter.get("/logout",async(req,res)=>{
 })
 
 userRouter.get("/users",async(req,res)=>{
-    const Mail=req.cookies.auth || req.session.auth;
+    const Mail=req.cookies.auth || localStorage.getItem("auth");
     if(Mail===null || undefined){
         return res
         .status(401)

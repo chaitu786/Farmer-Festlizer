@@ -6,7 +6,7 @@ const authenticate = require("../MiddleWares/Authorization.MiddleWares");
 const postsRouter = Router();
 
 postsRouter.get("/myposts", async(req,res)=>{
-    const Mail=req.cookies.auth || req.session.auth;
+    const Mail=req.cookies.auth || localStorage.getItem("auth");
     console.log(Mail);
     const { user } = await authenticate(Mail);
     if (user === undefined || user.length === 0) {
@@ -23,7 +23,7 @@ postsRouter.get("/myposts", async(req,res)=>{
 
 postsRouter.get("/:id/delete",async(req,res)=>{
     const { id } = req.params;
-    const Mail=req.cookies.auth || req.session.auth;
+    const Mail=req.cookies.auth || localStorage.getItem("auth");
     console.log(Mail);
     const { user } = await authenticate(Mail);
     if (user === undefined || user.length === 0) {
@@ -41,7 +41,7 @@ postsRouter.get("/:id/delete",async(req,res)=>{
 
 postsRouter.get("/:id/permenentDelete",async(req,res)=>{
     const { id } = req.params;
-    const Mail=req.cookies.auth || req.session.auth;
+    const Mail=req.cookies.auth || localStorage.getItem("auth");
     console.log(Mail);
     const { user } = await authenticate(Mail);
     if (user === undefined || user.length === 0) {

@@ -6,7 +6,7 @@ const authenticate = require("../MiddleWares/Authorization.MiddleWares");
 const cartRouter = Router();
 
 cartRouter.get("/cart", async(req,res)=>{
-    const Mail=req.cookies.auth || req.session.auth;
+    const Mail=req.cookies.auth || localStorage.getItem("auth")
     console.log(Mail);
     const { seller } = await authenticate(Mail);
     if (seller === undefined || seller.length === 0) {
