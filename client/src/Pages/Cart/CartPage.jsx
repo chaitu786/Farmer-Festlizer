@@ -5,15 +5,25 @@ import {FcBiohazard} from "react-icons/fc"
 import { useDispatch,useSelector,} from 'react-redux'
 import {AiOutlineDelete} from "react-icons/ai"
 import {BsBookmarkCheck} from "react-icons/bs"
-import { Get_Cart_Data } from '../../Redux/AppReducer/Action'
+import { Get_Cart_Data,Delete,PermenentDelete } from '../../Redux/AppReducer/Action'
+import { useAlert } from 'react-alert'
 
 export const Cart = () => {
     const Cart_Data=useSelector((state)=>state.Reducer.Cart)
+    const alert = useAlert()
 
     const dispatch=useDispatch();
     useEffect(()=>{
         dispatch(Get_Cart_Data())
     },[dispatch])
+
+    const handleCompleted=(Id)=>{
+        dispatch(Delete(Id,alert))
+    }
+
+    const handleDelete=(Id)=>{
+        dispatch(PermenentDelete(Id,alert))
+    }
     console.log(Cart_Data,"ji")
   return (
     <>
@@ -38,8 +48,8 @@ export const Cart = () => {
                         <Text>{el.Title}</Text>
                         <Text>{el.Desc}</Text>
                         <Box display={'flex'} >
-                        <Button leftIcon={<AiOutlineDelete fontSize={'20px'}/>} width={{base:'fit-content',md:"auto"}} overflow={'hidden'}>Delete</Button>
-                        <Button leftIcon={<BsBookmarkCheck fontSize={'20px'}/>} w={{base:'fit-content',md:"auto"}} overflow={'hidden'} ml={'10'}>Collections</Button>
+                        <Button onClick={()=>handleDelete(el._id)} leftIcon={<AiOutlineDelete fontSize={'20px'}/>} width={{base:'fit-content',md:"auto"}} overflow={'hidden'}>Delete</Button>
+                        <Button onClick={()=>handleCompleted(el._id)} leftIcon={<BsBookmarkCheck fontSize={'20px'}/>} w={{base:'fit-content',md:"auto"}} overflow={'hidden'} ml={'10'}>Collections</Button>
                         </Box>
                         </Box>
                

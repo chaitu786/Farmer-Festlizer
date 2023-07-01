@@ -7,7 +7,9 @@ import { AddToCart, Get_All_Data } from '../../Redux/AppReducer/Action'
 import { useAlert } from 'react-alert'
 
 export const FarmersData = ({isFarmer}) => {
-const ProductData=useSelector((state)=>state.Reducer.Products?.data);
+const Products=useSelector((state)=>state.Reducer.Products?.data);
+let ProductData = Products ? [...Products].reverse() : []
+console.log(ProductData,'alsdjknaksjda');
   const dispatch=useDispatch()
   const alert = useAlert()
   useEffect(()=>{
