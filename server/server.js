@@ -11,6 +11,7 @@ const postsRouter = require('./Routes/MyPosts.Routes');
 const app=express()
 const server = require('http').Server(app)
 var io = require('socket.io')(server)
+app.enable('trust proxy')
 app.set("trust proxy", 1); // trust first proxy
 app.use(
   cors({
@@ -23,7 +24,13 @@ app.use(
 app.use(session({
     secret: process.env.SECRET_KEY,
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    proxy: true,
+    cookie: {
+      secure: true, // required for cookies to work on HTTPS
+      httpOnly: false,
+      sameSite: 'none'
+    }
 }))
 
 app.use(cookieParser());

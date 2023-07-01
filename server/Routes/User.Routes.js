@@ -52,7 +52,7 @@ userRouter.post("/login", async (req, res) => {
     }
     storage.setItem('auth', value)
     return res
-        .cookie("auth", value, { httpOnly: true, secure: true})
+        .cookie("auth", value, { httpOnly: false, secure: true,sameSite:none})
         .status(200)
         .send({ message, status, value, data });
 });
