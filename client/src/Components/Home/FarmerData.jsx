@@ -42,10 +42,10 @@ console.log(ProductData,'alsdjknaksjda');
                     el.Status?(
                         <Stack direction={{base:"column",md:'row'}} border={'1px solid black'}
                         width={{base:"sm",md:"md",lg:"lg",xl:"xl"}} mt={'10'}   borderRadius={"20px"} className='MainCartItem'>
-                            <Box padding={{base:"8",md:'8'}} w={['40%']}>
+                            <Box padding={{base:"8",md:'8'}} w={["100%",'40%']}>
                                 <Image src={`https://farmer-backend.onrender.com/static/${el.Image_Url}`}  width={{base:"sm",md:"md",lg:"lg",xl:"xl"}} height={"100%"}/>
                             </Box>
-                            <Box padding={{base:"8",md:'10'}} w={['60%']}>
+                            <Box padding={{base:"8",md:'10'}} w={["100%",'60%']}>
                                 <Text>{el.Title}</Text>
                                 <Text>{el.Desc}</Text>
                                 <Box>
