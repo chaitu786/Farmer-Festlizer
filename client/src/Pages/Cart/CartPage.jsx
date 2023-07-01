@@ -49,7 +49,7 @@ export const Cart = () => {
                         <Text>{el.Desc}</Text>
                         <Box display={'flex'} >
                         <Button onClick={()=>handleDelete(el._id)} leftIcon={<AiOutlineDelete fontSize={'20px'}/>} width={{base:'fit-content',md:"auto"}} overflow={'hidden'}>Delete</Button>
-                        <Button onClick={()=>handleCompleted(el._id)} leftIcon={<BsBookmarkCheck fontSize={'20px'}/>} w={{base:'fit-content',md:"auto"}} overflow={'hidden'} ml={'10'}>Collections</Button>
+                        <Button onClick={()=>handleCompleted(el._id)} leftIcon={<BsBookmarkCheck fontSize={'20px'}/>} w={{base:'fit-content',md:"auto"}} overflow={'hidden'} ml={'10'}>Completed ?</Button>
                         </Box>
                         </Box>
                

@@ -22,9 +22,7 @@ const FileUpload = () => {
         formData.append("Category",data.Category)
         formData.append("Image_Url",inputFile.current.files[0])
 
-        dispatch(Upload_Issue(formData,alert)).then((res)=>{
-          navigate('/')
-        })
+        dispatch(Upload_Issue(formData,alert,navigate))
         // axios.post("http://localhost:8080/uploadIssue",formData,{
         //     headers:{"Content-Type":"multiple/form-data"}
         // })

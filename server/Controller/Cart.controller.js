@@ -24,7 +24,7 @@ const cartItems= async (Mail) =>{
 
 const Completed_Cart=async(id)=>{
   try {
-      await DataModel.findByIdAndUpdate(id,{isCompleted:true})
+      await SellerModel.findByIdAndUpdate(id,{isCompleted:true})
       return {
           message: "item marked as completed",
           status: "success",
@@ -37,7 +37,7 @@ const Completed_Cart=async(id)=>{
 
 const Delete_Cart=async(id)=>{
   try {
-      await DataModel.findByIdAndDelete(id)
+      await SellerModel.findByIdAndDelete(id)
       return {
           message: "item deleted successfully",
           status: "success",

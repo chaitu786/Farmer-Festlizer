@@ -1,6 +1,6 @@
 import * as types from "./Actiontypes"
 import axios from "axios"
-let baseRoute = "https://farmer-backend.onrender.com"  //"http://localhost:8080" 
+let baseRoute = "http://localhost:8080" //"https://farmer-backend.onrender.com"  //
 export const Get_All_Data=()=>(dispatch)=>{
    axios.get(`${baseRoute}/data`).then((r)=>{
       dispatch({type:types.PRODUCT_SUCCESS,payload:r.data})
@@ -100,7 +100,7 @@ export const Login_Success=(alert,payload,navigate)=>()=>{
    })
 }
 
-export const Upload_Issue=(formData,alert)=>(dispatch)=>{
+export const Upload_Issue=(formData,alert,navigate)=>(dispatch)=>{
    console.log(formData);
    axios.post(`${baseRoute}/uploadIssue`,formData,{withCredentials:true},{headers:{"Content-Type":"multiple/form-data"}}).then((r)=>{
       console.log(r,"multer");
@@ -113,6 +113,7 @@ export const Upload_Issue=(formData,alert)=>(dispatch)=>{
       else if (r.data.message==="error"){
          alert.error("Something Went Wrong")
       }
+      navigate("/")
    })
    .then(()=>{
       dispatch(Get_All_Data())
@@ -171,7 +172,7 @@ export const PermenentDelete=(Id,alert)=>(dispatch)=>{
   })
 }
 
-export const Delete_Cart=(Id,alert)=>()=>{
+export const Delete_Cart=(Id,alert)=>(dispatch)=>{
    axios.get(`${baseRoute}/${Id}/delete_catItem`,{withCredentials:true}).then((r)=>{
        if("item marked as completed"===r.data.message){
            alert.success("item marked as completed")
