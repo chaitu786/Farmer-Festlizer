@@ -50,7 +50,7 @@ export const FarmerPage = () => {
   return (
     <>
     <Box display={'flex'} mt={{md:'24'}}>
-      <Box >
+      <Box w={['auto',"25%"]}>
 <Stack direction={'row'} mt={'10'} ml={{base:"5"}}>
     <FcBiohazard fontSize={'40px'}/>
       <Input placeholder='Explore' width={{base:"64",md:'64',lg:'64',xl:'64'}} / > 
@@ -58,11 +58,11 @@ export const FarmerPage = () => {
 </Stack> 
 <SocialProfileSimple name={User[0]} name1={User[1]} number={User[2]} role={User[3]} isLogin={isLogin} isFormer={farmer} handleLogout={handleLogout} handleLogin={handleLogin}/>
 </Box>
-<Box mt={{base:'32',md:'10',lg:"10",xl:'10'}} ml={{base:'-350px',md:"10",lg:'10',xl:'10'}} style={{height:'100vh',overflowY:"scroll"}} className="imagescroll">
+<Box  w={['auto',"50%"]} mt={{base:'32',md:'10',lg:"10",xl:'10'}} ml={{base:'-350px',md:"10",lg:'10',xl:'10'}} style={{height:'100vh',overflowY:"scroll"}} className="imagescroll">
 <FarmersData isFarmer={farmer}/>
 </Box>
 <Show above='sm'>
-<Box >
+<Box  w={['auto',"25%"]}>
   <FarmersSchemes/>
 </Box>
 </Show>
