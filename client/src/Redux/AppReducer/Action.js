@@ -113,6 +113,7 @@ export const Upload_Issue=(formData,alert,navigate)=>(dispatch)=>{
       else if (r.data.message==="error"){
          alert.error("Something Went Wrong")
       }
+      dispatch(Get_All_Data())
       navigate("/")
    })
    .then(()=>{
