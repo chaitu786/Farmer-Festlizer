@@ -8,10 +8,11 @@ const initstate={
 
 
 export const AppReducer=(state=initstate,action)=>{
+    let arr = action.payload ? [...action.payload] : []
     switch(action.type){
         case types.PRODUCT_SUCCESS:
             return{
-                Products:action.payload,
+                Products:arr.reverse(),
             }
         case types.CART_DATA:
             return{

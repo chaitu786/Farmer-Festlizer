@@ -5,12 +5,14 @@ import { Box, Center, FormControl, FormLabel, Heading, Input, Stack, Textarea } 
 import { useDispatch } from 'react-redux'
 import { useAlert } from 'react-alert'
 import { Upload_Issue } from '../../Redux/AppReducer/Action'
+import { useNavigate } from 'react-router-dom'
 
 const FileUpload = () => {
     const[data,setData]=useState({})
     const inputFile=useRef()
     const dispatch=useDispatch()
     const alert=useAlert()
+    const navigate = useNavigate()
 
     const handleSubmit=(e)=>{
         e.preventDefault()
@@ -20,7 +22,9 @@ const FileUpload = () => {
         formData.append("Category",data.Category)
         formData.append("Image_Url",inputFile.current.files[0])
 
-        dispatch(Upload_Issue(formData,alert))
+        dispatch(Upload_Issue(formData,alert)).then((res)=>{
+          navigate('/')
+        })
         // axios.post("http://localhost:8080/uploadIssue",formData,{
         //     headers:{"Content-Type":"multiple/form-data"}
         // })
