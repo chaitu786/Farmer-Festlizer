@@ -57,6 +57,7 @@ userRouter.post("/login", async (req, res) => {
 });
 
 userRouter.get("/logout",async(req,res)=>{
+    localStorage.clear()
     res.clearCookie("auth").status(200).send(
         {message:"user logout successfully", status:"success"}
     )
