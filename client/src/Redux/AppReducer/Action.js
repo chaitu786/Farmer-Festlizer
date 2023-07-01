@@ -170,3 +170,32 @@ export const PermenentDelete=(Id,alert)=>(dispatch)=>{
        console.log(err);
   })
 }
+
+export const Delete_Cart=(Id,alert)=>()=>{
+   axios.get(`${baseRoute}/${Id}/delete_catItem`,{withCredentials:true}).then((r)=>{
+       if("item marked as completed"===r.data.message){
+           alert.success("item marked as completed")
+       }
+   })
+   .catch((err)=>{
+       alert.error("Something Went Wrong in axios")
+       console.log(err);
+  })
+}
+
+
+export const PermenentDelete_Cart=(Id,alert)=>(dispatch)=>{
+   axios.get(`${baseRoute}/${Id}/permenentDelete_catItem`,{withCredentials:true}).then((r)=>{
+      console.log(r.data);
+       if("item deleted successfully"===r.data.message){
+           alert.success("item deleted successfully")
+       }
+   })
+   .then(()=>{
+      dispatch(Get_MyPosts_Data())
+   })
+   .catch((err)=>{
+       alert.error("Something Went Wrong in axios")
+       console.log(err);
+  })
+}

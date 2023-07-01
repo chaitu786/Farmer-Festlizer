@@ -5,7 +5,7 @@ import {FcBiohazard} from "react-icons/fc"
 import { useDispatch,useSelector,} from 'react-redux'
 import {AiOutlineDelete} from "react-icons/ai"
 import {BsBookmarkCheck} from "react-icons/bs"
-import { Get_Cart_Data,Delete,PermenentDelete } from '../../Redux/AppReducer/Action'
+import { Get_Cart_Data,Delete_Cart,PermenentDelete_Cart } from '../../Redux/AppReducer/Action'
 import { useAlert } from 'react-alert'
 
 export const Cart = () => {
@@ -18,11 +18,11 @@ export const Cart = () => {
     },[dispatch])
 
     const handleCompleted=(Id)=>{
-        dispatch(Delete(Id,alert))
+        dispatch(Delete_Cart(Id,alert))
     }
 
     const handleDelete=(Id)=>{
-        dispatch(PermenentDelete(Id,alert))
+        dispatch(PermenentDelete_Cart(Id,alert))
     }
     console.log(Cart_Data,"ji")
   return (

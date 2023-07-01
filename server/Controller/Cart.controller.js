@@ -22,4 +22,29 @@ const cartItems= async (Mail) =>{
     }
 }
 
-module.exports=cartItems
+const Completed_Cart=async(id)=>{
+  try {
+      await DataModel.findByIdAndUpdate(id,{isCompleted:true})
+      return {
+          message: "item marked as completed",
+          status: "success",
+      };
+  } catch (error) {
+      return { message: "something went wrong", status: "error" };
+  }
+}
+
+
+const Delete_Cart=async(id)=>{
+  try {
+      await DataModel.findByIdAndDelete(id)
+      return {
+          message: "item deleted successfully",
+          status: "success",
+      };
+  } catch (error) {
+      return { message: "something went wrong", status: "error" };
+  }
+}
+
+module.exports={cartItems,Delete_Cart,Completed_Cart}
