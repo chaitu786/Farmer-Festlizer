@@ -59,6 +59,7 @@ export const Sigup_Success=(alert,payload,navigate)=>(dispatch)=>{
 export const Login_Success=(alert,payload,navigate)=>()=>{
     axios.post(`${baseRoute}/login`,payload,{withCredentials:true}).then((r)=>{
        if(r.data.message==="login success"){
+         sessionStorage.setItem("auth",r.data.value)
           localStorage.setItem("isLogin",true)
           localStorage.setItem("role",r.data.data.role)
           localStorage.setItem("user",`${r.data.data.First_Name},${r.data.data.Last_Name},${r.data.data.Mobile},${r.data.data.role}`)
@@ -127,6 +128,7 @@ export const Logout=()=>(dispatch)=>{
    axios.get(`${baseRoute}/logout`,{withCredentials:true}).then((res)=>{
       console.log(res.data.message,"jil");
       if(res.data.message==="user logout successfully"){
+         sessionStorage.clear()
          localStorage.setItem("isLogin",false)
          localStorage.setItem("user","")
          window.location.reload()
