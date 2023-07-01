@@ -1,5 +1,5 @@
 //make connection
-const socket = io.connect('http://localhost:8080/');
+const socket = io.connect('https://farmer-backend.onrender.com/');
 
 //Query DOM
 const message = document.getElementById('message');
