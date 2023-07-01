@@ -175,6 +175,7 @@ export const Delete_Cart=(Id,alert)=>()=>{
    axios.get(`${baseRoute}/${Id}/delete_catItem`,{withCredentials:true}).then((r)=>{
        if("item marked as completed"===r.data.message){
            alert.success("item marked as completed")
+           dispatch(Get_Cart_Data())
        }
    })
    .catch((err)=>{
@@ -192,7 +193,7 @@ export const PermenentDelete_Cart=(Id,alert)=>(dispatch)=>{
        }
    })
    .then(()=>{
-      dispatch(Get_MyPosts_Data())
+      dispatch(Get_Cart_Data())
    })
    .catch((err)=>{
        alert.error("Something Went Wrong in axios")
