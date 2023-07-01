@@ -111,7 +111,7 @@ const MenuLinks = ({ isOpen, isCart, isLogin, handleLog, role }) => {
               bg: ["primary.100", "primary.100", "primary.600", "primary.600"]
             }}
           >
-           {isLogin?(<Text onclick={()=>handleLog}>{role}</Text>):(<MenuItem to="/signup" isLast>Login</MenuItem>)}
+           {isLogin?(<Text onclick={()=>handleLog}>{role}</Text>):(<MenuItem to="/login" isLast>Login</MenuItem>)}
           </Button>
         </>
       </Stack>
