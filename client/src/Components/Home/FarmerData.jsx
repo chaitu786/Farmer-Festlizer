@@ -19,6 +19,19 @@ console.log(ProductData,'alsdjknaksjda');
   const handleCart=(Id)=>{
     dispatch(AddToCart(Id,alert))
   }
+  let x = ProductData.filter((el)=>el.Status == true)
+  console.log(x,'askjdbasd');
+  if(x.length == 0){
+    return (
+      <Box display={"flex"} alignContent={'center'} justifyContent={'center'}>
+        <Box>
+          <Heading textAlign={'center'} color={"green"}>No Issues Found As of Now.</Heading>
+          <Heading as={"h2"} textAlign={'center'} color={"green"}>Thank You For Visiting.</Heading>
+          <Heading as={'h3'} textAlign={'center'} color={"green"}>Visit Later for Issues</Heading>
+        </Box>
+      </Box>
+    )
+  }
   return (
    <Center >
     <Box>
