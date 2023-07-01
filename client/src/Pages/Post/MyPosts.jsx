@@ -38,7 +38,7 @@ export const MyPosts = () => {
                 Posts_Data?.map((el)=>(
                     <Stack direction={{base:"column",md:"row",lg:'row',xl:'row'}}  width={{base:"sm",md:'auto',lg:'auto',xl:'xl'}}  ml={{base:'1',md:'16',lg:"16",xl:'16'}} mt='5' borderRadius={'20px'} className='MainCartItem'>
                         <Box padding={{base:"8"}}  >
-                            <Image src = {`https://farmer-backend.onrender.com/${el.Image_Url}`} width={{base:"sm",md:"auto",lg:'auto',xl:'auto'}}></Image>
+                            <Image src = {`https://farmer-backend.onrender.com/static/${el.Image_Url}`} width={{base:"sm",md:"auto",lg:'auto',xl:'auto'}}></Image>
                         </Box>
                         <Box padding={{base:"8"}}>
                         <Text>{el.Title}</Text>
