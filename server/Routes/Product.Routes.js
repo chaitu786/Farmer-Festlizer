@@ -28,7 +28,7 @@ const storage=multer.diskStorage({
 })
 const uploads=multer({storage:storage})
 productRouter.post("/uploadIssue", uploads.single("Image_Url"), async(req,res)=>{
-    const Mail = req.cookies.auth || localStorage.getItem("auth")
+    const Mail = req.cookies.auth || req.session.auth;
     console.log(Mail);
     if (Mail === null || undefined) {
       return res
@@ -58,7 +58,7 @@ productRouter.post("/uploadIssue", uploads.single("Image_Url"), async(req,res)=>
 })
 
 productRouter.get("/:id/addtocart", async(req,res)=>{
-    const Mail=req.cookies.auth ||localStorage.getItem("auth")
+    const Mail=req.cookies.auth || req.session.auth;
     if(Mail===null || undefined){
         return res
         .status(401)
@@ -82,7 +82,7 @@ productRouter.get("/:id/addtocart", async(req,res)=>{
 
 productRouter.get("/:id/removefromcart", async(req,res)=>{
     
-    const Mail=req.cookies.auth ||localStorage.getItem("auth")
+    const Mail=req.cookies.auth || req.session.auth;
     if(Mail===null || undefined){
         return res
         .status(401)

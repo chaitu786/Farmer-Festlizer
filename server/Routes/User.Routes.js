@@ -1,6 +1,7 @@
 const { Router }=require("express");
 const { SignUpUser,LoginUser, getAllUsers } = require("../Controller/User.controller");
 const userRouter = Router();
+const storage = require('node-sessionstorage')
 
 // create user
 userRouter.post("/signup", async(req,res)=>{
@@ -49,7 +50,7 @@ userRouter.post("/login", async (req, res) => {
     } else if (status === "failed") {
       return res.status(201).send({ message, status });
     }
-    localStorage.setItem(auth, value)
+    storage.setItem('auth', value)
     return res
         .cookie("auth", value, { httpOnly: true, secure: true})
         .status(200)
@@ -57,14 +58,13 @@ userRouter.post("/login", async (req, res) => {
 });
 
 userRouter.get("/logout",async(req,res)=>{
-    localStorage.clear()
     res.clearCookie("auth").status(200).send(
         {message:"user logout successfully", status:"success"}
     )
 })
 
 userRouter.get("/users",async(req,res)=>{
-    const Mail=req.cookies.auth || localStorage.getItem("auth");
+    const Mail=req.cookies.auth || req.session.auth;
     if(Mail===null || undefined){
         return res
         .status(401)
