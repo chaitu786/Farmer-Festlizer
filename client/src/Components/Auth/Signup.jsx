@@ -1,4 +1,4 @@
-import { Checkbox, Image, Select, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
+import { Checkbox, Image, Select, Spinner, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
 import React from 'react'
 import {FcBiohazard} from "react-icons/fc"
 import {
@@ -31,6 +31,7 @@ export const SignUp = () => {
   const alert = useAlert();
   const dispatch=useDispatch();
   const navigate=useNavigate()
+  const [loading,setLoading] = useState(false)
   const handleChange=(e)=>{
     const {name,value}=e.target
     setData({
@@ -40,10 +41,35 @@ export const SignUp = () => {
   }
 
   const handleSignup=()=>{
-    dispatch(Sigup_Success(alert,data,navigate))
+    setLoading(true)
+    dispatch(Sigup_Success(alert,data,navigate,setLoading))
   }
 
   return (
+    <>
+    {loading && (
+      <Box
+         position="fixed"
+         top="0"
+         left="0"
+         width="100%"
+         height="100%"
+         zIndex="9999"
+         backgroundColor="rgba(0, 0, 0, 0.3)"
+      >
+         <Spinner
+            position="absolute"
+            top="50%"
+            speed="0.65s"
+            emptyColor="gray.300"
+            left="50%"
+            transform="translate(-50%, -50%)"
+            color="#CB3B7D"
+            thickness="4px"
+            size="xl"
+         />
+      </Box>
+    )}
     <Tabs isFitted variant='enclosed' mt={'28'}>
   <TabList mb='1em'mr={'12'}>
     <Tab color={'darkmagenta'} fontWeight={'semibold'}>COMPANY</Tab>
@@ -67,7 +93,7 @@ export const SignUp = () => {
     </TabPanel>
   </TabPanels>
 </Tabs>
-    
+</>
   )
 }
 

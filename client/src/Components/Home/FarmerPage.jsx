@@ -1,4 +1,4 @@
-import { Image, Input, useFocusEffect, } from '@chakra-ui/react'
+import { Image, Input, Spinner, useFocusEffect, } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import {FcBiohazard} from "react-icons/fc"
 import {FcSearch} from "react-icons/fc"
@@ -27,13 +27,15 @@ import { useNavigate } from 'react-router-dom';
 export const FarmerPage = () => {
     const [isLogin,setIsLogin]=useState(false)
     const [farmer,setisFarmer]=useState(false)
+    const [loading,setLoading] = useState(true)
     const User=localStorage.getItem("user")?.split(",")||["","",""]
     const login=localStorage.getItem("isLogin")
     const dispatch=useDispatch()
     const navigate=useNavigate()
     const handleLogout=()=>{
+      setLoading(true)
       console.log(1);
-      dispatch(Logout())
+      dispatch(Logout(setLoading))
     }
     const handleLogin=()=>{
       navigate("/login")
@@ -49,6 +51,29 @@ export const FarmerPage = () => {
 
   return (
     <>
+    {loading && (
+      <Box
+         position="fixed"
+         top="0"
+         left="0"
+         width="100%"
+         height="100%"
+         zIndex="9999"
+         backgroundColor="rgba(0, 0, 0, 0.3)"
+      >
+         <Spinner
+            position="absolute"
+            top="50%"
+            speed="0.65s"
+            emptyColor="gray.300"
+            left="50%"
+            transform="translate(-50%, -50%)"
+            color="#CB3B7D"
+            thickness="4px"
+            size="xl"
+         />
+      </Box>
+    )}
     <Box display={'flex'} mt={{md:'24'}}>
       <Box w={['auto',"25%"]}>
 <Stack direction={'row'} mt={'10'} ml={{base:"5"}}>
@@ -59,7 +84,7 @@ export const FarmerPage = () => {
 <SocialProfileSimple name={User[0]} name1={User[1]} number={User[2]} role={User[3]} isLogin={isLogin} isFormer={farmer} handleLogout={handleLogout} handleLogin={handleLogin}/>
 </Box>
 <Box  w={['90%',"50%"]} mt={{base:'32',md:'10',lg:"10",xl:'10'}} ml={{base:'-350px',md:"10",lg:'10',xl:'10'}} style={{height:'100vh',overflowY:"scroll"}} className="imagescroll">
-<FarmersData isFarmer={farmer}/>
+<FarmersData isFarmer={farmer} setLoading = {setLoading}/>
 </Box>
 <Show above='sm'>
 <Box  w={['auto',"25%"]}>

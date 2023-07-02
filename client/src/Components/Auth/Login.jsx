@@ -14,6 +14,7 @@ import {
   Heading,
   useColorModeValue,
   Text,
+  Spinner,
 } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import { Login_Success } from '../../Redux/AppReducer/Action';
@@ -23,6 +24,7 @@ export const Login = () => {
   const dispatch=useDispatch()
   const alert=useAlert()
   const navigate=useNavigate()
+  const [loading,setLoading] = useState(false)
   const handleChange=(e)=>{
     const {name,value}=e.target
     setData({
@@ -32,12 +34,37 @@ export const Login = () => {
   }
 
   const handleSubmit=()=>{
-    dispatch(Login_Success(alert,data,navigate))
+    setLoading(true)
+    dispatch(Login_Success(alert,data,navigate,setLoading))
   }
   const handleRegister=()=>{
     navigate("/signup")
   }
   return (
+    <>
+    {loading && (
+      <Box
+         position="fixed"
+         top="0"
+         left="0"
+         width="100%"
+         height="100%"
+         zIndex="9999"
+         backgroundColor="rgba(0, 0, 0, 0.3)"
+      >
+         <Spinner
+            position="absolute"
+            top="50%"
+            speed="0.65s"
+            emptyColor="gray.300"
+            left="50%"
+            transform="translate(-50%, -50%)"
+            color="#CB3B7D"
+            thickness="4px"
+            size="xl"
+         />
+      </Box>
+    )}
     <Flex
       minH={'100vh'}
       align={'center'}
@@ -86,5 +113,6 @@ export const Login = () => {
         </Box>
       </Stack>
     </Flex>
+    </>
   )
 }

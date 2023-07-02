@@ -1,5 +1,5 @@
-import { AspectRatio, Box, Button, Center, Flex, Heading, Image, Show, Stack, Text } from '@chakra-ui/react'
-import React, { useEffect } from 'react'
+import { AspectRatio, Box, Button, Center, Flex, Heading, Image, Show, Spinner, Stack, Text } from '@chakra-ui/react'
+import React, { useEffect, useState } from 'react'
 import "../../Components/Home/Farmers.css"
 import {FcBiohazard} from "react-icons/fc"
 import { useDispatch,useSelector,} from 'react-redux'
@@ -11,22 +11,48 @@ import { useAlert } from 'react-alert'
 export const Cart = () => {
     const Cart_Data=useSelector((state)=>state.Reducer.Cart)
     const alert = useAlert()
+    const [loading,setLoading] = useState(true)
 
     const dispatch=useDispatch();
     useEffect(()=>{
-        dispatch(Get_Cart_Data())
+        dispatch(Get_Cart_Data(setLoading))
     },[dispatch])
 
     const handleCompleted=(Id)=>{
-        dispatch(Delete_Cart(Id,alert))
+        setLoading(true)
+        dispatch(Delete_Cart(Id,alert,setLoading))
     }
 
     const handleDelete=(Id)=>{
-        dispatch(PermenentDelete_Cart(Id,alert))
+        setLoading(true)
+        dispatch(PermenentDelete_Cart(Id,alert,setLoading))
     }
     console.log(Cart_Data,"ji")
   return (
     <>
+    {loading && (
+      <Box
+         position="fixed"
+         top="0"
+         left="0"
+         width="100%"
+         height="100%"
+         zIndex="9999"
+         backgroundColor="rgba(0, 0, 0, 0.3)"
+      >
+         <Spinner
+            position="absolute"
+            top="50%"
+            speed="0.65s"
+            emptyColor="gray.300"
+            left="50%"
+            transform="translate(-50%, -50%)"
+            color="#CB3B7D"
+            thickness="4px"
+            size="xl"
+         />
+      </Box>
+    )}
    <Box mt={{md:'24'}}>
     <Stack>
         <Center>

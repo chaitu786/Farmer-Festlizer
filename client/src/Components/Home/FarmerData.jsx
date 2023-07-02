@@ -1,23 +1,24 @@
 import { Box, Button, Center, Heading, Image, Stack, Text, color } from '@chakra-ui/react'
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector} from 'react-redux'
 import { useEffect } from 'react'
 import "./Farmers.css"
 import { AddToCart, Get_All_Data } from '../../Redux/AppReducer/Action'
 import { useAlert } from 'react-alert'
 
-export const FarmersData = ({isFarmer}) => {
+export const FarmersData = ({isFarmer,setLoading}) => {
 const Products=useSelector((state)=>state.Reducer.Products?.data);
 let ProductData = Products ? [...Products].reverse() : []
 console.log(ProductData,'alsdjknaksjda');
   const dispatch=useDispatch()
   const alert = useAlert()
   useEffect(()=>{
-    dispatch(Get_All_Data())
+    dispatch(Get_All_Data(setLoading))
   },[dispatch])
   console.log(ProductData)
   const handleCart=(Id)=>{
-    dispatch(AddToCart(Id,alert))
+    setLoading(true)
+    dispatch(AddToCart(Id,alert,setLoading))
   }
   let x = ProductData.filter((el)=>el.Status == true)
   console.log(x,'askjdbasd');
