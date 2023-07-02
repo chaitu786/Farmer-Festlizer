@@ -6,10 +6,9 @@ import "./Farmers.css"
 import { AddToCart, Get_All_Data } from '../../Redux/AppReducer/Action'
 import { useAlert } from 'react-alert'
 
-export const FarmersData = ({isFarmer,setLoading}) => {
+export const FarmersData = ({isFarmer,setLoading,loading}) => {
 const Products=useSelector((state)=>state.Reducer.Products?.data);
 let ProductData = Products ? [...Products].reverse() : []
-console.log(ProductData,'alsdjknaksjda');
   const dispatch=useDispatch()
   const alert = useAlert()
   useEffect(()=>{
@@ -22,7 +21,7 @@ console.log(ProductData,'alsdjknaksjda');
   }
   let x = ProductData.filter((el)=>el.Status == true)
   console.log(x,'askjdbasd');
-  if(x.length == 0){
+  if(x.length == 0 && !loading){
     return (
       <Box display={"flex"} alignContent={'center'} justifyContent={'center'}>
         <Box>
