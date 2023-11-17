@@ -1,34 +1,42 @@
 import React, { useEffect, useState } from "react";
-import { Link, Box, Flex, Text, Button, Stack, useDisclosure } from "@chakra-ui/react";
+import {
+  Link,
+  Box,
+  Flex,
+  Text,
+  Button,
+  Stack,
+  useDisclosure,
+} from "@chakra-ui/react";
 
-import Logo from "../Home/Logo"
+import Logo from "../Home/Logo";
 import { Logout } from "../../Redux/AppReducer/Action";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const NavBar = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const [isCart,setIsCart]=useState(false)
-  const [isLogin,setIsLogin]=useState(false)
-  let role=localStorage.getItem("role")
-  const login=localStorage.getItem("isLogin")
-  const dispatch=useDispatch()
-  const navigate=useNavigate()
-  useEffect(()=>{
-    if(role==="Farmer"){
-      setIsCart(true)
+  const [isCart, setIsCart] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
+  let role = localStorage.getItem("role");
+  const login = localStorage.getItem("isLogin");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (role === "Farmer") {
+      setIsCart(true);
     }
-    if(login==="true"){
-      setIsLogin(true)
-  }
-  },[role,login])
-  const handleLogout=()=>{
+    if (login === "true") {
+      setIsLogin(true);
+    }
+  }, [role, login]);
+  const handleLogout = () => {
     console.log(1);
-    dispatch(Logout())
-  }
-  const handleClick=()=>{
-    navigate("/")
-  }
+    dispatch(Logout());
+  };
+  const handleClick = () => {
+    navigate("/");
+  };
   const toggle = () => setIsOpen(!isOpen);
 
   return (
@@ -39,7 +47,13 @@ const NavBar = (props) => {
         onclick={handleClick}
       />
       <MenuToggle toggle={toggle} isOpen={isOpen} />
-      <MenuLinks isOpen={isOpen} isCart={isCart} isLogin={isLogin} handleLog={handleLogout} role={role}/>
+      <MenuLinks
+        isOpen={isOpen}
+        isCart={isCart}
+        isLogin={isLogin}
+        handleLog={handleLogout}
+        role={role}
+      />
     </NavBarContainer>
   );
 };
@@ -97,10 +111,22 @@ const MenuLinks = ({ isOpen, isCart, isLogin, handleLog, role }) => {
         direction={["column", "row", "row", "row"]}
         pt={[4, 4, 0, 0]}
       >
-        <Box>{isCart?(<MenuItem to="/create">Create</MenuItem>):(<MenuItem to="/">Home</MenuItem>)}</Box>
-        <MenuItem to="https://farmer-backend.onrender.com/chat/">Chat</MenuItem>
+        <Box>
+          {isCart ? (
+            <MenuItem to="/create">Create</MenuItem>
+          ) : (
+            <MenuItem to="/">Home</MenuItem>
+          )}
+        </Box>
+        <MenuItem to="https://farmer-festlizer.vercel.app/chat/">Chat</MenuItem>
         <MenuItem to="/weather">Weather</MenuItem>
-        <Box>{isCart?(<MenuItem to="/myposts">My Posts</MenuItem>):(<MenuItem to="/cart">Cart</MenuItem>)}</Box>
+        <Box>
+          {isCart ? (
+            <MenuItem to="/myposts">My Posts</MenuItem>
+          ) : (
+            <MenuItem to="/cart">Cart</MenuItem>
+          )}
+        </Box>
         <>
           <Button
             size="sm"
@@ -108,10 +134,16 @@ const MenuLinks = ({ isOpen, isCart, isLogin, handleLog, role }) => {
             color={["primary.500", "primary.500", "white", "white"]}
             bg={["white", "white", "primary.500", "primary.500"]}
             _hover={{
-              bg: ["primary.100", "primary.100", "primary.600", "primary.600"]
+              bg: ["primary.100", "primary.100", "primary.600", "primary.600"],
             }}
           >
-           {isLogin?(<Text onclick={()=>handleLog}>{role}</Text>):(<MenuItem to="/login" isLast>Login</MenuItem>)}
+            {isLogin ? (
+              <Text onclick={() => handleLog}>{role}</Text>
+            ) : (
+              <MenuItem to="/login" isLast>
+                Login
+              </MenuItem>
+            )}
           </Button>
         </>
       </Stack>
@@ -128,17 +160,14 @@ const NavBarContainer = ({ children, ...props }) => {
       wrap="wrap"
       w="100%"
       p={8}
-      
       color={["white", "white", "primary.700", "primary.700"]}
-      boxShadow= {'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px'}
-      position={{base:'fixed',md:'fixed'}}
-      top={{base:'0',md:0}}
+      boxShadow={
+        "rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px"
+      }
+      position={{ base: "fixed", md: "fixed" }}
+      top={{ base: "0", md: 0 }}
       zIndex={100}
-      bg={["primary.500", "primary.500",'white','white']}
-      
-      
-      
-
+      bg={["primary.500", "primary.500", "white", "white"]}
       {...props}
     >
       {children}
