@@ -3,7 +3,7 @@ import axios from "axios";
 let baseRoute = "https://farmer-festlizer.vercel.app"; //"http://localhost:8080"
 export const Get_All_Data = (setLoading) => (dispatch) => {
   axios
-    .get(`${baseRoute}/data`)
+    .get(`${baseRoute}/getdata`)
     .then((r) => {
       dispatch({ type: types.PRODUCT_SUCCESS, payload: r.data });
       setLoading(false);

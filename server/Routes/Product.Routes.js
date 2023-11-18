@@ -8,7 +8,7 @@ const name=random.middle()
 
 const productRouter = Router();
 
-productRouter.get("/data", async(req,res)=>{
+productRouter.get("/getdata", async(req,res)=>{
     const { message, status, data } = await getAllData();
     if (status === "error") {
         return res.status(404).send({ message, status });
