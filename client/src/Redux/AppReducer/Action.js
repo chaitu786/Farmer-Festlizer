@@ -1,6 +1,6 @@
 import * as types from "./Actiontypes";
 import axios from "axios";
-let baseRoute = "https://farmer-festlizer.vercel.app"; //"http://localhost:8080"
+let baseRoute = "https://farmer-backend.onrender.com"; //"http://localhost:8080"
 export const Get_All_Data = (setLoading) => (dispatch) => {
   axios
     .get(`${baseRoute}/getdata`)

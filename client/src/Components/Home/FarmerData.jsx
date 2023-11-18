@@ -63,7 +63,7 @@ export const FarmersData = ({ isFarmer, setLoading, loading }) => {
               >
                 <Box padding={{ base: "8", md: "8" }} w={["100%", "40%"]}>
                   <Image
-                    src={`https://farmer-festlizer.vercel.app/static/${el.Image_Url}`}
+                    src={`https://farmer-backend.onrender.com/static/${el.Image_Url}`}
                     width={{ base: "sm", md: "md", lg: "lg", xl: "xl" }}
                     height={"100%"}
                   />

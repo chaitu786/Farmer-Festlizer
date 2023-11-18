@@ -1,5 +1,5 @@
 //make connection
-const socket = io.connect("https://farmer-festlizer.vercel.app/");
+const socket = io.connect("https://farmer-backend.onrender.com/");
 
 //Query DOM
 const message = document.getElementById("message");

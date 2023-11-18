@@ -100,7 +100,7 @@ export const MyPosts = () => {
                 >
                   <Box padding={{ base: "8" }}>
                     <Image
-                      src={`https://farmer-festlizer.vercel.app/static/${el.Image_Url}`}
+                      src={`https://farmer-backend.onrender.com/static/${el.Image_Url}`}
                       width={{ base: "sm", md: "auto", lg: "auto", xl: "auto" }}
                     ></Image>
                   </Box>

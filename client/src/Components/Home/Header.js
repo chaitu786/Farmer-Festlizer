@@ -118,7 +118,7 @@ const MenuLinks = ({ isOpen, isCart, isLogin, handleLog, role }) => {
             <MenuItem to="/">Home</MenuItem>
           )}
         </Box>
-        <MenuItem to="https://farmer-festlizer.vercel.app/chat/">Chat</MenuItem>
+        <MenuItem to="https://farmer-backend.onrender.com/chat/">Chat</MenuItem>
         <MenuItem to="/weather">Weather</MenuItem>
         <Box>
           {isCart ? (
